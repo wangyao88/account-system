@@ -35,10 +35,72 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!--BEGIN CONTENT-->
 				<div class="page-content">
 					<div id="tab-general">
-					    <div id="accountbook_button_groups_create" class="row mbl">
-					    	<div class="col-sm-6 col-md-1">
-								<button type="button" class="btn btn-green">新增账本</button>
-							</div>
+					    <div id="accountbook_operation" class="row mbl">
+					    	<div class="col-lg-6">
+                                 <div class="panel panel-violet">
+                                     <div class="panel-heading">新增账本</div>
+                                     <div class="panel-body pan">
+                                         <form action="accountbook/save" method="post" class="form-horizontal">
+                                             <div class="form-body pal">
+                                                 <div class="form-group">
+                                                     <label for="create_account_name" class="col-md-3 control-label">账本名称 <span class='require'>*</span>
+                                                     </label>
+                                                     <div class="col-md-9">
+                                                         <div class="input-icon"><i class="fa fa-user"></i>
+                                                             <input id="create_account_name" name="name" type="text" placeholder="账本名称" class="form-control" />
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="form-group mbn">
+                                                     <label for="create_account_describe" class="col-md-3 control-label">账本描述</label>
+                                                     <div class="col-md-9">
+                                                         <textarea id="create_account_describe" name="describe" rows="3" class="form-control" placeholder="账本描述"></textarea>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                             <div class="form-actions">
+                                                 <div class="col-md-offset-3 col-md-9">
+                                                     <button type="submit" class="btn btn-primary">增加</button>&nbsp;
+                                                     <button type="button" class="btn btn-green">取消</button>
+                                                 </div>
+                                             </div>
+                                         </form>
+                                     </div>
+                                 </div>
+                             </div>
+                             
+                             <div class="col-lg-6">
+                                 <div class="panel panel-green">
+                                     <div class="panel-heading">修改账本</div>
+                                     <div class="panel-body pan">
+                                         <form action="#" class="form-horizontal">
+                                             <div class="form-body pal">
+                                                 <div class="form-group">
+                                                     <label for="update_account_name" class="col-md-3 control-label">账本名称 <span class='require'>*</span>
+                                                     </label>
+                                                     <div class="col-md-9">
+                                                         <div class="input-icon"><i class="fa fa-user"></i>
+                                                             <input id="update_account_name" type="text" placeholder="账本名称" class="form-control" />
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="form-group mbn">
+                                                     <label for="update_account_describe" class="col-md-3 control-label">账本描述</label>
+                                                     <div class="col-md-9">
+                                                         <textarea id="update_account_describe" rows="3" class="form-control" placeholder="账本描述"></textarea>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                             <div class="form-actions">
+                                                 <div class="col-md-offset-3 col-md-9">
+                                                     <button type="submit" class="btn btn-primary">修改</button>&nbsp;
+                                                     <button type="button" class="btn btn-green">取消</button>
+                                                 </div>
+                                             </div>
+                                         </form>
+                                     </div>
+                                 </div>
+                             </div>
 					    </div>
 						<div id="sum_box" class="row mbl">
 							<div class="col-sm-6 col-md-3">

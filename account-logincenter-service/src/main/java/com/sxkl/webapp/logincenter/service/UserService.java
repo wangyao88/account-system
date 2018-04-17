@@ -82,4 +82,8 @@ public class UserService {
 		String pwd = encryptor.encrypt(password);  
 		return OperationResult.configurateSuccessResult(pwd);
 	}
+
+	public String getUserId(String name) {
+		return userDao.findByName(name).getId();
+	}
 }

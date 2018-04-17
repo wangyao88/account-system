@@ -20,6 +20,9 @@ public interface LoginService {
 
 	@PostMapping("/checkName")
 	String checkName(@RequestParam("name")String name);
+	
+	@PostMapping("/getUserId")
+	String getUserId(@RequestParam("name")String name);
 
 	@PostMapping("/getPublicKey")
 	String getPublicKey();

@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sxkl.webapp.common.Constants;
 import com.sxkl.webapp.utils.ObjectUtils;
+import com.sxkl.webapp.utils.StringUtils;
 
 /**
  * @author: wangyao
@@ -30,5 +31,13 @@ public class BaseController {
 		}
 		mv.setViewName(viewName);
 		return mv;
+	}
+	
+	protected String getUserName(HttpServletRequest request){
+		Object obj = request.getSession().getAttribute(Constants.USER_KEY_IN_SESSION);
+		if(ObjectUtils.isNotNull(obj)){
+			return obj.toString();
+		}
+		return StringUtils.EMPTY;
 	}
 }

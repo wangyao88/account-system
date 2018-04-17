@@ -2,8 +2,7 @@ package com.sxkl.webapp.websystem.login.service;
 
 import org.springframework.stereotype.Component;
 
-import com.sxkl.webapp.common.Constants;
-import com.sxkl.webapp.common.OperationResult;
+import com.sxkl.webapp.websystem.common.service.BaseServiceFallback;
 
 /**
  * @author: wangyao
@@ -11,7 +10,7 @@ import com.sxkl.webapp.common.OperationResult;
  * @description: 
  */
 @Component
-public class LoginServiceFallback implements LoginService{
+public class LoginServiceFallback extends BaseServiceFallback implements LoginService{
 
 	@Override
 	public String registe(String name, String password) {
@@ -33,7 +32,8 @@ public class LoginServiceFallback implements LoginService{
 		return getServiceErrorResult();
 	}
 	
-	private String getServiceErrorResult(){
-		return OperationResult.configurateFailureResult(Constants.SERVICE_ERROR);
+	@Override
+	public String getUserId(String name) {
+		return getServiceErrorResult();
 	}
 }

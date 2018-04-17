@@ -31,6 +31,7 @@ public class LoginFilter extends ZuulFilter {
 	public boolean shouldFilter() {
 		HttpServletRequest request = getRequest();
 		String url = request.getServletPath();
+		System.out.println("url----------"+url);
 		if(url.contains("checkName") || url.contains("registe") || url.contains("login")){
 			return false;
 		}

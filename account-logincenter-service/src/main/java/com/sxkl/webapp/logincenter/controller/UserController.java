@@ -42,6 +42,11 @@ public class UserController {
 		return userService.login(name,password);
 	}
 	
+	@PostMapping("/getUserId")
+	public String getUserId(String name){
+		return userService.getUserId(name);
+	}
+	
 	@PostMapping("/getPassword")
 	public String getPassword(String password){
 		return userService.getPassword(password);
