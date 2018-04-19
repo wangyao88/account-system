@@ -34,6 +34,6 @@ public class LoginServiceFallback extends BaseServiceFallback implements LoginSe
 	
 	@Override
 	public String getUserId(String name) {
-		return getServiceErrorResult();
+		return getServiceErrorResult("获取用户ID失败");
 	}
 }

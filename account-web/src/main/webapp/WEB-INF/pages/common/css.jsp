@@ -14,6 +14,9 @@
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/calendar/zabuto_calendar.min.css">
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/sco.message/sco.message.css">
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/intro.js/introjs.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/media/css/jquery.dataTables.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/media/css/dataTables.bootstrap.css">
 <!--Loading style vendors-->
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/animate.css/animate.css">
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/jquery-pace/pace.css">

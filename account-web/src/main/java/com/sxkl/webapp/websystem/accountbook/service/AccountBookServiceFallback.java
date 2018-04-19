@@ -14,7 +14,17 @@ public class AccountBookServiceFallback extends BaseServiceFallback implements A
 
 	@Override
 	public String save(String account) {
-		return getServiceErrorResult();
+		return getServiceErrorResult("保存账本失败");
+	}
+
+	@Override
+	public String getAccountBooks(String userId) {
+		return getServiceErrorResult("获取账本列表失败");
+	}
+
+	@Override
+	public String update(String account) {
+		return getServiceErrorResult("更新账本失败");
 	}
 
 }

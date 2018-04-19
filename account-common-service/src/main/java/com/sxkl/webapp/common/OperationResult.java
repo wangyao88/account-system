@@ -29,7 +29,7 @@ public class OperationResult {
 	}
 	
 	public static String configurateSuccessResult(Object data){
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		OperationResult operateResult = new OperationResult();
 		operateResult.setMsg("操作成功");
 		operateResult.setStatus(true);

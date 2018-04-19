@@ -38,3 +38,4 @@
 <script src="<%=basePath%>assert/theme/vendors/sco.message/sco.message.js"></script>
 <script src="<%=basePath%>assert/theme/vendors/intro.js/intro.js"></script>
 <script src="<%=basePath%>assert/theme/js/index.js"></script>
+

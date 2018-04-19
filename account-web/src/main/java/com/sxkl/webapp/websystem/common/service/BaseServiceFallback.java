@@ -13,4 +13,8 @@ public class BaseServiceFallback{
 	protected String getServiceErrorResult(){
 		return OperationResult.configurateFailureResult(Constants.SERVICE_ERROR);
 	}
+	
+	protected String getServiceErrorResult(String msg){
+		return OperationResult.configurateFailureResult(msg);
+	}
 }

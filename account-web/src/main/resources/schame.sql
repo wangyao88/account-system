@@ -21,3 +21,19 @@ DROP COLUMN `nickName`,
 CHANGE COLUMN `create_date` `create_date` DATETIME NULL COMMENT '注册日期' ,
 CHANGE COLUMN `nick_name` `nick_name` VARCHAR(255) NULL DEFAULT NULL COMMENT '昵称' ,
 CHANGE COLUMN `picture_url` `picture_url` VARCHAR(255) NULL DEFAULT NULL COMMENT '头像地址' ;
+
+
+CREATE TABLE `account`.`a_account` (
+  `id` VARCHAR(36) NOT NULL COMMENT '主键',
+  `name` VARCHAR(45) NULL COMMENT '账本名称',
+  `describe` VARCHAR(100) NULL COMMENT '账本描述',
+  `create_date` DATETIME NULL COMMENT '创建时间',
+  `user_id` VARCHAR(36) NULL COMMENT '用户主键',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COMMENT = '账本';
+ALTER TABLE `account`.`a_account` 
+CHANGE COLUMN `describe` `description` VARCHAR(100) NULL DEFAULT NULL COMMENT '账本描述' ;
+
+

@@ -15,4 +15,9 @@ public interface AccountBookService {
 	@PostMapping("/save")
 	String save(@RequestParam("account")String account);
 
+	@PostMapping("/update")
+	String update(@RequestParam("account")String account);
+	
+	@PostMapping("/getAccountBooks")
+	String getAccountBooks(@RequestParam("userId")String userId);
 }

@@ -84,6 +84,7 @@ public class UserService {
 	}
 
 	public String getUserId(String name) {
-		return userDao.findByName(name).getId();
+		String userId = userDao.findByName(name).getId();
+		return OperationResult.configurateSuccessResult(userId);
 	}
 }

@@ -42,15 +42,15 @@ public class LoginFilter extends ZuulFilter {
 	public Object run() throws ZuulException {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = getRequest(ctx);
-		boolean isLogin = isLogin(request);
-		if(!isLogin){
-			log.error("用户未登录");
-			ctx.setSendZuulResponse(false);
-			ctx.setResponseStatusCode(401);
-			return null;
-		}
-		String name = getName(request);
-		loginService.refreshUserLoginStatus(name);
+//		boolean isLogin = isLogin(request);
+//		if(!isLogin){
+//			log.error("用户未登录");
+//			ctx.setSendZuulResponse(false);
+//			ctx.setResponseStatusCode(401);
+//			return null;
+//		}
+//		String name = getName(request);
+//		loginService.refreshUserLoginStatus(name);
 		return null;
 	}
 
