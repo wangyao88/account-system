@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                              <div class="form-actions">
                                                  <div class="col-md-offset-3 col-md-9">
                                                      <button type="submit" class="btn btn-primary">增加</button>&nbsp;
-                                                     <button type="button" class="btn btn-green">取消</button>
+                                                     <button type="reset" class="btn btn-green">取消</button>
                                                  </div>
                                              </div>
                                          </form>
@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                              <div class="form-actions">
                                                  <div class="col-md-offset-3 col-md-9">
                                                      <button type="submit" class="btn btn-primary">修改</button>&nbsp;
-                                                     <button type="button" class="btn btn-green">取消</button>
+                                                     <button type="reset" class="btn btn-green">取消</button>
                                                  </div>
                                              </div>
                                          </form>

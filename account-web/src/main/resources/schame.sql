@@ -36,4 +36,15 @@ COMMENT = '账本';
 ALTER TABLE `account`.`a_account` 
 CHANGE COLUMN `describe` `description` VARCHAR(100) NULL DEFAULT NULL COMMENT '账本描述' ;
 
+CREATE TABLE `account`.`a_category` (
+  `id` VARCHAR(36) NOT NULL COMMENT '主键',
+  `name` VARCHAR(45) NOT NULL COMMENT '名称',
+  `create_date` DATETIME NOT NULL COMMENT '创建时间',
+  `type` VARCHAR(10) NOT NULL COMMENT '收支类别',
+  `parent_id` VARCHAR(36) NULL COMMENT '父类别ID',
+  `account_id` VARCHAR(36) NOT NULL COMMENT '账本ID',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COMMENT = '收支类别表';
 

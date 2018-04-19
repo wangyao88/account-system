@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @description: 
  */
 @Configuration
-@EntityScan(basePackages="com.sxkl.webapp.account.entity")
-@EnableJpaRepositories(basePackages="com.sxkl.webapp.account.dao")
+@EntityScan(basePackages="com.sxkl.webapp.account.*.entity")
+@EnableJpaRepositories(basePackages="com.sxkl.webapp.account.*.dao")
 @EnableTransactionManagement
 public class HIbernateJpaConfig {
 

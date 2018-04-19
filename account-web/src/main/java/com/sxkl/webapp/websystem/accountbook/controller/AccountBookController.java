@@ -77,5 +77,4 @@ public class AccountBookController extends BaseController {
 		String userId = loginServiceOperationResult.getData().toString();
 		return accountBookService.getAccountBooks(userId);
 	}
-
 }

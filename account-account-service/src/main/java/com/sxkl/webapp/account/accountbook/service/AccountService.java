@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.sxkl.webapp.account.accountbook.dao.IAccountDao;
 import com.sxkl.webapp.account.accountbook.entity.Account;
 import com.sxkl.webapp.common.OperationResult;
+import com.sxkl.webapp.utils.StringUtils;
 
 /**
  * @author: wangyao
@@ -24,6 +25,9 @@ public class AccountService {
 	
 	public String save(Account account){
 		try {
+			if(StringUtils.isEmpty(account.getName())){
+				return OperationResult.configurateFailureResult("账本名称不能为空");
+			}
 			long size = getAccountBookSize(account.getUserId());
 			if(size > 9){
 				return OperationResult.configurateFailureResult("最多创建八个账本");
@@ -37,6 +41,9 @@ public class AccountService {
 	
 	public String update(Account bean) {
 		try {
+			if(StringUtils.isEmpty(bean.getName())){
+				return OperationResult.configurateFailureResult("账本名称不能为空");
+			}
 			Optional<Account> optional = accountDao.findById(bean.getId());
 			Account account = optional.get();
 			account.setName(bean.getName());
