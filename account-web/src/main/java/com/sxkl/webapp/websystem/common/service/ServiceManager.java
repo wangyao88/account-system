@@ -2,9 +2,7 @@ package com.sxkl.webapp.websystem.common.service;
 
 import java.util.List;
 
-import org.assertj.core.util.Lists;
-
-import com.sxkl.webapp.common.OperationResult;
+import com.google.common.collect.Lists;
 import com.sxkl.webapp.websystem.common.entity.Service;
 
 /**
