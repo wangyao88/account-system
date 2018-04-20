@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>爱记账-收入类别管理</title>
+    <title>爱记账-支出类别管理</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,13 +26,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<%@ include file="../common/header.jsp"%>
 		<div id="wrapper">
-			<%@ include file="incomecategory_menu.jsp"%>
+			<%@ include file="outcomecategory_menu.jsp"%>
 			<!--BEGIN PAGE WRAPPER-->
 			<div id="page-wrapper">
 				<!--BEGIN TITLE & BREADCRUMB PAGE-->
 				<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 					<div class="page-header pull-left">
-						<div class="page-title">收入类别管理</div>
+						<div class="page-title">支出类别管理</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -42,9 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="tab-general">
 					    <div class="row mbl">
 					    	<div class="col-lg-12">
-	                            <button type="button" class="btn btn-red btn-square" onclick="addRootIncomeCategory()">添加类别</button>
-	                            <button type="button" class="btn btn-orange btn-square" onclick="addChildIncomeCategory()">添加子类别</button>
-	                            <button type="button" class="btn btn-green btn-square" onclick="updateIncomeCategory()">修改类别</button>
+	                            <button type="button" class="btn btn-red btn-square" onclick="addRootOutcomeCategory()">添加类别</button>
+	                            <button type="button" class="btn btn-orange btn-square" onclick="addChildOutcomeCategory()">添加子类别</button>
+	                            <button type="button" class="btn btn-green btn-square" onclick="updateOutcomeCategory()">修改类别</button>
 	                        </div>
 					    </div>
 					    
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                                  	<h4 class="block-heading">类别列表</h4>
 			                                </div>
 			                                <div class="col-lg-2">
-				                                <select id="accountbook_select" class="form-control" onchange="getIncomeCategoryDataWhenChange()">
+				                                <select id="accountbook_select" class="form-control" onchange="getOutcomeCategoryDataWhenChange()">
 			                                     </select>
 			                                </div>
 		                                 </div>
@@ -86,6 +86,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@ include file="../common/js.jsp"%>
 	<script src="<%=basePath%>assert/theme/vendors/jquery-nestable/jquery.nestable.js"></script>
 	<script type="text/javascript" src="<%=basePath%>assert/layer/layer.js"></script>
-	<script type="text/javascript" src="<%=basePath%>assert/category/incomecategory.js"></script>
+	<script type="text/javascript" src="<%=basePath%>assert/category/outcomecategory.js"></script>
 </body>
 </html>

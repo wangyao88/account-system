@@ -32,4 +32,24 @@ public class CategoryServiceFallback extends BaseServiceFallback implements Cate
 		return getServiceErrorResult("修改收入类别失败");
 	}
 
+	@Override
+	public String getOutcomeCategory(String accountId) {
+		return getServiceErrorResult("获取支出类别失败");
+	}
+
+	@Override
+	public String addRootOutcomeCategory(String name, String accountId) {
+		return getServiceErrorResult("添加支出类别失败");
+	}
+
+	@Override
+	public String addChildOutcomeCategory(String name, String parentId, String accountId) {
+		return getServiceErrorResult("添加支出子类别失败");
+	}
+
+	@Override
+	public String updateOutcomeCategory(String id, String name) {
+		return getServiceErrorResult("修改支出类别失败");
+	}
+
 }

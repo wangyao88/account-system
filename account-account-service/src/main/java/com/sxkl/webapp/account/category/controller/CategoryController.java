@@ -2,7 +2,6 @@ package com.sxkl.webapp.account.category.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sxkl.webapp.account.category.service.CategoryService;
@@ -23,11 +22,6 @@ public class CategoryController {
 		return categoryService.getIncomeCategory(accountId);
 	}
 	
-	@PostMapping("/getOutcomeCategory")
-	public String getOutcomeCategory(String accountId){
-		return categoryService.getOutcomeCategory(accountId);
-	}
-	
 	@PostMapping("/addRootIncomeCategory")
 	public String addRootIncomeCategory(String name, String accountId){
 		return categoryService.addRootIncomeCategory(name,accountId);
@@ -41,5 +35,25 @@ public class CategoryController {
 	@PostMapping("/updateIncomeCategory")
 	public String updateIncomeCategory(String id, String name){
 		return categoryService.updateIncomeCategory(id,name);
+	}
+	
+	@PostMapping("/getOutcomeCategory")
+	public String getOutcomeCategory(String accountId){
+		return categoryService.getOutcomeCategory(accountId);
+	}
+	
+	@PostMapping("/addRootOutcomeCategory")
+	public String addRootOutcomeCategory(String name, String accountId){
+		return categoryService.addRootOutcomeCategory(name,accountId);
+	}
+	
+	@PostMapping("/addChildOutcomeCategory")
+	public String addChildOutcomeCategory(String name, String parentId, String accountId){
+		return categoryService.addChildOutcomeCategory(name,parentId,accountId);
+	}
+	
+	@PostMapping("/updateOutcomeCategory")
+	public String updateOutcomeCategory(String id, String name){
+		return categoryService.updateOutcomeCategory(id,name);
 	}
 }

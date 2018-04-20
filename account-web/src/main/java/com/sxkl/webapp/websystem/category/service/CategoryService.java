@@ -23,4 +23,17 @@ public interface CategoryService {
 
 	@PostMapping("/updateIncomeCategory")
 	String updateIncomeCategory(@RequestParam("id")String id, @RequestParam("name")String name);
+
+	
+	@PostMapping("/getOutcomeCategory")
+	String getOutcomeCategory(@RequestParam("accountId")String accountId);
+
+	@PostMapping("/addRootOutcomeCategory")
+	String addRootOutcomeCategory(@RequestParam("name")String name, @RequestParam("accountId")String accountId);
+
+	@PostMapping("/addChildOutcomeCategory")
+	String addChildOutcomeCategory(@RequestParam("name")String name, @RequestParam("parentId")String parentId, @RequestParam("accountId")String accountId);
+
+	@PostMapping("/updateOutcomeCategory")
+	String updateOutcomeCategory(@RequestParam("id")String id, @RequestParam("name")String name);
 }

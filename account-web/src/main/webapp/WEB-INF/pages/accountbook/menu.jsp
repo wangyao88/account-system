@@ -22,7 +22,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="incomecategory/index"><i class="fa fa-align-left"></i><span class="submenu-title">收入类别管理</span></a>
                     </li>
-                    <li><a href="layout-left-sidebar-collapsed.html"><i class="fa fa-angle-double-left"></i><span class="submenu-title">支出类别管理</span></a>
+                    <li><a href="outcomecategory/index"><i class="fa fa-angle-double-left"></i><span class="submenu-title">支出类别管理</span></a>
                     </li>
                 </ul>
             </li>

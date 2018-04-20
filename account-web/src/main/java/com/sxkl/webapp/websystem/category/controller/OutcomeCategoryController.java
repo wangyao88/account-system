@@ -26,22 +26,22 @@ import net.sf.json.JSONArray;
  * @description: 
  */
 @Controller
-@RequestMapping("/incomecategory")
-public class IncomeCategoryController extends BaseController{
+@RequestMapping("/outcomecategory")
+public class OutcomeCategoryController extends BaseController{
 
 	@Autowired
 	private CategoryService categoryService;
 	
 	@GetMapping("/index")
 	public ModelAndView index(HttpServletRequest request){
-		return configurePage("category/incomecategory",request);
+		return configurePage("category/outcomecategory",request);
 	}
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping("/getIncomeCategory")
+	@PostMapping("/getOutcomeCategory")
 	@ResponseBody
-	public String getIncomeCategory(String accountId){
-		String categoryServiceResult = categoryService.getIncomeCategory(accountId);
+	public String getOutcomeCategory(String accountId){
+		String categoryServiceResult = categoryService.getOutcomeCategory(accountId);
 		OperationResult categoryServiceOperationResult = OperationResult.deserialize(categoryServiceResult);
 		Object data = categoryServiceOperationResult.getData();
 		JSONArray array = JSONArray.fromObject(data);
@@ -49,21 +49,21 @@ public class IncomeCategoryController extends BaseController{
 		return TreeService.newTreeService(categories).getTree();
 	}
 	
-	@PostMapping("/addRootIncomeCategory")
+	@PostMapping("/addRootOutcomeCategory")
 	@ResponseBody
-	public String addRootIncomeCategory(String name, String accountId){
-		return categoryService.addRootIncomeCategory(name,accountId);
+	public String addRootOutcomeCategory(String name, String accountId){
+		return categoryService.addRootOutcomeCategory(name,accountId);
 	}
 	
-	@PostMapping("/addChildIncomeCategory")
+	@PostMapping("/addChildOutcomeCategory")
 	@ResponseBody
-	public String addChildIncomeCategory(String name, String parentId, String accountId){
-		return categoryService.addChildIncomeCategory(name,parentId,accountId);
+	public String addChildOutcomeCategory(String name, String parentId, String accountId){
+		return categoryService.addChildOutcomeCategory(name,parentId,accountId);
 	}
 	
-	@PostMapping("/updateIncomeCategory")
+	@PostMapping("/updateOutcomeCategory")
 	@ResponseBody
-	public String updateIncomeCategory(String id, String name){
-		return categoryService.updateIncomeCategory(id,name);
+	public String updateOutcomeCategory(String id, String name){
+		return categoryService.updateOutcomeCategory(id,name);
 	}
  }

@@ -14,15 +14,15 @@
                 </div>
                 <div class="clearfix"></div>
             </li>
-            <li class="active"><a href="main"><i class="fa fa-tachometer fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">首页</span></a>
+            <li><a href="main"><i class="fa fa-tachometer fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">首页</span></a>
             </li>
-            <li><a href="accountbook/index"><i class="fa fa-bullhorn fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">账本管理</span></a>
+            <li><a href="accountbook/index" target="_self"><i class="fa fa-bullhorn fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">账本管理</span></a>
             </li>
-            <li><a href="#"><i class="fa fa-desktop fa-fw"><div class="icon-bg bg-pink"></div></i><span class="menu-title">收支类别管理</span><span class="fa arrow"></span></a>
+            <li class="active"><a href="#"><i class="fa fa-desktop fa-fw"><div class="icon-bg bg-pink"></div></i><span class="menu-title">收支类别管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="incomecategory/index"><i class="fa fa-align-left"></i><span class="submenu-title">收入类别管理</span></a>
                     </li>
-                    <li><a href="outcomecategory/index"><i class="fa fa-angle-double-left"></i><span class="submenu-title">支出类别管理</span></a>
+                    <li class="active"><a href="outcomecategory/index"><i class="fa fa-angle-double-left"></i><span class="submenu-title">支出类别管理</span></a>
                     </li>
                 </ul>
             </li>
