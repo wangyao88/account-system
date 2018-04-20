@@ -1,8 +1,11 @@
 package com.sxkl.webapp.account.category.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,11 +37,8 @@ public class CategoryService {
 	
 	private String getCategory(String type, String accountId){
 		try {
-			System.out.println("accountId---------------"+accountId);
 			List<Category> categoris = categoryDao.findByTypeAndAccountId(type,accountId);
-			String result = OperationResult.configurateSuccessResult(categoris);
-			System.out.println(result);
-			return result;
+			return OperationResult.configurateSuccessResult(categoris);
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("获取类别失败！错误信息："+e.getMessage());
 		}
@@ -60,6 +60,47 @@ public class CategoryService {
 			return OperationResult.configurateSuccessResult("类别保存成功");
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("类别保存失败！错误信息："+e.getMessage());
+		}
+	}
+
+	public String addRootIncomeCategory(String name, String accountId) {
+		try {
+			Category category = new Category();
+			category.setAccountId(accountId);
+			category.setCreateDate(new Date());
+			category.setName(name);
+			category.setType(CategoryType.INCOME.toString());
+			categoryDao.save(category);
+			return OperationResult.configurateSuccessResult("类别保存成功");
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("类别保存失败！错误信息："+e.getMessage());
+		}
+	}
+
+	public String addChildIncomeCategory(String name, String parentId, String accountId) {
+		try {
+			Category category = new Category();
+			category.setAccountId(accountId);
+			category.setCreateDate(new Date());
+			category.setName(name);
+			category.setType(CategoryType.INCOME.toString());
+			category.setParentId(parentId);
+			categoryDao.save(category);
+			return OperationResult.configurateSuccessResult("子类别保存成功");
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("子类别保存失败！错误信息："+e.getMessage());
+		}
+	}
+
+	public String updateIncomeCategory(String id, String name) {
+		try {
+		    Optional<Category> optional = categoryDao.findById(id);
+		    Category result = optional.get();
+			result.setName(name);
+			categoryDao.save(result);
+			return OperationResult.configurateSuccessResult("类别修改成功");
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("类别修改失败！错误信息："+e.getMessage());
 		}
 	}
 }

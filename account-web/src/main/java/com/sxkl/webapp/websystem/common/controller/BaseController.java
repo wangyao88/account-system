@@ -31,6 +31,7 @@ public class BaseController {
 		}else{
 			request.getSession().setAttribute(Constants.USER_KEY_IN_SESSION,obj);
 		}
+		mv.addObject(Constants.USER_KEY_IN_SESSION,obj);
 		mv.setViewName(viewName);
 		return mv;
 	}

@@ -14,4 +14,13 @@ public interface CategoryService {
 
 	@PostMapping("/getIncomeCategory")
 	String getIncomeCategory(@RequestParam("accountId")String accountId);
+
+	@PostMapping("/addRootIncomeCategory")
+	String addRootIncomeCategory(@RequestParam("name")String name, @RequestParam("accountId")String accountId);
+
+	@PostMapping("/addChildIncomeCategory")
+	String addChildIncomeCategory(@RequestParam("name")String name, @RequestParam("parentId")String parentId, @RequestParam("accountId")String accountId);
+
+	@PostMapping("/updateIncomeCategory")
+	String updateIncomeCategory(@RequestParam("id")String id, @RequestParam("name")String name);
 }

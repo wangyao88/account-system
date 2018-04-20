@@ -16,6 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT">
     <%@ include file="../common/css.jsp"%>
     <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/jquery-nestable/nestable.css">
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/category/incomecategory.css">
 </head>
 
 <body class=" ">
@@ -25,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<%@ include file="../common/header.jsp"%>
 		<div id="wrapper">
-			<%@ include file="../common/menu.jsp"%>
+			<%@ include file="menu.jsp"%>
 			<!--BEGIN PAGE WRAPPER-->
 			<div id="page-wrapper">
 				<!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -41,9 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="tab-general">
 					    <div class="row mbl">
 					    	<div class="col-lg-12">
-	                            <button type="button" class="btn btn-red btn-square">添加类别</button>
-	                            <button type="button" class="btn btn-orange btn-square">添加子类别</button>
-	                            <button type="button" class="btn btn-green btn-square">修改类别</button>
+	                            <button type="button" class="btn btn-red btn-square" onclick="addRootIncomeCategory()">添加类别</button>
+	                            <button type="button" class="btn btn-orange btn-square" onclick="addChildIncomeCategory()">添加子类别</button>
+	                            <button type="button" class="btn btn-green btn-square" onclick="updateIncomeCategory()">修改类别</button>
 	                        </div>
 					    </div>
 					    
@@ -51,16 +52,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					        <div class="col-lg-6">
 					        	<div class="panel">
 	                                <div class="panel-body">
-	                                    <h4 class="block-heading">类别列表</h4>
-	                                    <div id="nestable3" class="dd">
-	                                        <ol id="tree_list" class="dd-list">
-	                                            
-	                                        </ol>
-	                                    </div>
+	                                
+		                                <div class="row mbl">
+			                                <div class="col-lg-6">
+			                                  	<h4 class="block-heading">类别列表</h4>
+			                                </div>
+			                                <div class="col-lg-2">
+				                                <select id="accountbook_select" class="form-control" onchange="getIncomeCategoryDataWhenChange()">
+			                                     </select>
+			                                </div>
+		                                 </div>
+	                                    
+	                                    
+	                                     <div id="nestable3" class="dd">
+	                                         <div id="select_item_id" style="display: none;"></div>
+	                                         <ol id="tree_list" class="dd-list">
+	                                         
+	                                         </ol>
+	                                     </div>
 	                                </div>
 	                            </div>
 					        </div>
-					    
 					    </div>
                         
 					</div>
@@ -73,6 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<%@ include file="../common/js.jsp"%>
 	<script src="<%=basePath%>assert/theme/vendors/jquery-nestable/jquery.nestable.js"></script>
+	<script type="text/javascript" src="<%=basePath%>assert/layer/layer.js"></script>
 	<script type="text/javascript" src="<%=basePath%>assert/category/incomecategory.js"></script>
 </body>
 </html>

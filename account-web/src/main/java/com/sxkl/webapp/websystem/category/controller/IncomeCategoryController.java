@@ -49,4 +49,22 @@ public class IncomeCategoryController extends BaseController{
 		String tree = TreeService.newTreeService(categories).getTree();
 		return tree;
 	}
+	
+	@PostMapping("/addRootIncomeCategory")
+	@ResponseBody
+	public String addRootIncomeCategory(String name, String accountId){
+		return categoryService.addRootIncomeCategory(name,accountId);
+	}
+	
+	@PostMapping("/addChildIncomeCategory")
+	@ResponseBody
+	public String addChildIncomeCategory(String name, String parentId, String accountId){
+		return categoryService.addChildIncomeCategory(name,parentId,accountId);
+	}
+	
+	@PostMapping("/updateIncomeCategory")
+	@ResponseBody
+	public String updateIncomeCategory(String id, String name){
+		return categoryService.updateIncomeCategory(id,name);
+	}
  }

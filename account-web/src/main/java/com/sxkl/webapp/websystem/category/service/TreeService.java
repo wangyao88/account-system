@@ -74,7 +74,7 @@ public class TreeService {
 		StringBuilder node = new StringBuilder();
 		node.append("<li data-id=\"").append(category.getId()).append("\" class=\"dd-item dd3-item\">")
 		    .append("<div class=\"dd-handle dd3-handle\"></div>")
-		    .append("<div class=\"dd3-content\">").append(category.getName()).append("</div>")
+		    .append("<div onclick=\"addActiveClass(this)\" class=\"dd3-content\">").append(category.getName()).append("</div>")
 		    .append("</li>");
 		return node.toString();
 	}
@@ -83,7 +83,7 @@ public class TreeService {
 		StringBuilder node = new StringBuilder();
 		node.append("<li data-id=\"").append(category.getId()).append("\" class=\"dd-item dd3-item\">")
 		    .append("<div class=\"dd-handle dd3-handle\"></div>")
-		    .append("<div class=\"dd3-content\">").append(category.getName()).append("</div>")
+		    .append("<div onclick=\"addActiveClass(this)\" class=\"dd3-content\">").append(category.getName()).append("</div>")
 		    .append("<ol class=\"dd-list\">");
 		return node.toString();
 	}

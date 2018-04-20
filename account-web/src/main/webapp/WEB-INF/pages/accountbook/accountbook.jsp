@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<%@ include file="../common/header.jsp"%>
 		<div id="wrapper">
-			<%@ include file="../common/menu.jsp"%>
+			<%@ include file="menu.jsp"%>
 			<!--BEGIN PAGE WRAPPER-->
 			<div id="page-wrapper">
 				<!--BEGIN TITLE & BREADCRUMB PAGE-->

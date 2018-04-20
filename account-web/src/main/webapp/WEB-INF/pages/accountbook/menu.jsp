@@ -4,7 +4,7 @@
         <ul id="side-menu" class="nav">
             <li class="user-panel">
                 <div class="info">
-                    <p>Admin</p>
+                    <p>${username}</p>
                     <ul class="list-inline list-unstyled">
                         <li><a href="extra-profile.html" data-hover="tooltip" title="个人信息"><i class="fa fa-user"></i></a>
                         </li>
@@ -14,9 +14,9 @@
                 </div>
                 <div class="clearfix"></div>
             </li>
-            <li class="active"><a href="main"><i class="fa fa-tachometer fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">首页</span></a>
+            <li><a href="main"><i class="fa fa-tachometer fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">首页</span></a>
             </li>
-            <li><a href="accountbook/index" target="_self"><i class="fa fa-bullhorn fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">账本管理</span></a>
+            <li class="active"><a href="accountbook/index" target="_self"><i class="fa fa-bullhorn fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">账本管理</span></a>
             </li>
             <li><a href="#"><i class="fa fa-desktop fa-fw"><div class="icon-bg bg-pink"></div></i><span class="menu-title">收支类别管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
