@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sxkl.webapp.common.OperationResult;
 import com.sxkl.webapp.websystem.category.entity.Category;
+import com.sxkl.webapp.websystem.category.entity.SearchComplete;
 import com.sxkl.webapp.websystem.category.service.CategoryService;
 import com.sxkl.webapp.websystem.category.service.TreeService;
 import com.sxkl.webapp.websystem.common.controller.BaseController;
@@ -65,5 +66,23 @@ public class IncomeCategoryController extends BaseController{
 	@ResponseBody
 	public String updateIncomeCategory(String id, String name){
 		return categoryService.updateIncomeCategory(id,name);
+	}
+	
+	@GetMapping("/autocompleteCategory")
+	@ResponseBody
+	public SearchComplete autocompleteCategory(String q, String accountId, String categoryType){
+//		String categoryServiceResult = categoryService.autocompleteCategory(q,accountId,categoryType);
+		
+		
+		
+		String[] arr = new String[]{"aa","aaadfdf","sdfwerwe"};
+		int length = arr.length;
+		SearchComplete result = new SearchComplete(length);
+		for(int i = 0; i < length; i++){
+			result.getSuggestions()[i] = arr[i];
+			result.getData()[i] = arr[i];
+		}
+		result.setQuery(q);
+		return result;
 	}
  }
