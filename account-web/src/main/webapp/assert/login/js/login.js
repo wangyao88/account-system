@@ -121,7 +121,7 @@ function doLogin(password){
 		dataType : "json",
 		success : function(result) {
 			if(!result.status){
-				layer.msg(result.msg);
+				layer.msg(result.data);
 				return;
 			}
 			window.location.href = "main";

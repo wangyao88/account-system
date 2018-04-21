@@ -56,4 +56,9 @@ public class CategoryController {
 	public String updateOutcomeCategory(String id, String name){
 		return categoryService.updateOutcomeCategory(id,name);
 	}
+	
+	@PostMapping("/getCategory")
+	public String getCategory(String name, String accountId, String categoryType) {
+		return categoryService.getCategory(name,accountId,categoryType);
+	}
 }

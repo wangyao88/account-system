@@ -19,4 +19,6 @@ public interface ICategoryJpaDao extends JpaRepository<Category, String> {
 
 	 Page<Category> findByTypeAndAccountId(String type, String accountId, Pageable pageable);
 
+	 List<Category> findByTypeAndAccountIdAndNameLike(String categoryType, String accountId, String name);
+
 }

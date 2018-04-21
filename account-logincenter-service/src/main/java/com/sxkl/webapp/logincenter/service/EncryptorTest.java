@@ -11,6 +11,9 @@ import org.jasypt.encryption.StringEncryptor;
 //@SpringBootTest(classes = LogincenterApplication.class)    
 //@WebAppConfiguration
 public class EncryptorTest {
+	
+//	@Autowired
+//	private DataSource dataSource;
 
 //	@Autowired  
     private StringEncryptor encryptor;  

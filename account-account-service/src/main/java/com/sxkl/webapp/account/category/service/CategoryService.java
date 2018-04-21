@@ -10,10 +10,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
 import com.sxkl.webapp.account.category.dao.ICategoryJpaDao;
 import com.sxkl.webapp.account.category.entity.Category;
 import com.sxkl.webapp.account.category.entity.CategoryType;
 import com.sxkl.webapp.common.OperationResult;
+import com.sxkl.webapp.utils.StringUtils;
 
 /**
  * @author: wangyao
@@ -99,6 +101,24 @@ public class CategoryService {
 			result.setName(name);
 			categoryDao.save(result);
 			return OperationResult.configurateSuccessResult("类别修改成功");
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("类别修改失败！错误信息："+e.getMessage());
+		}
+	}
+
+	public String getCategory(String name, String accountId, String categoryType) {
+		try {
+			System.out.println("name="+name+"; accountId="+accountId+"; categoryType="+categoryType);
+			name = StringUtils.append(name, "%","%");
+			List<Category> categories = categoryDao.findByTypeAndAccountIdAndNameLike(categoryType,accountId,name);
+			if(categories.isEmpty()){
+				return OperationResult.configurateSuccessResult(new String[]{});
+			}
+		    List<String> datas = Lists.newArrayList();
+			for(Category category : categories){
+				datas.add(category.getName());
+			}
+			return OperationResult.configurateSuccessResult(datas);
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("类别修改失败！错误信息："+e.getMessage());
 		}

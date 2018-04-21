@@ -36,4 +36,7 @@ public interface CategoryService {
 
 	@PostMapping("/updateOutcomeCategory")
 	String updateOutcomeCategory(@RequestParam("id")String id, @RequestParam("name")String name);
+
+	@PostMapping("/getCategory")
+	String getCategory(@RequestParam("name")String name, @RequestParam("accountId")String accountId, @RequestParam("categoryType")String categoryType);
 }

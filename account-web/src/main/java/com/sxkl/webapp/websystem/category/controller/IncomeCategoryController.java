@@ -1,5 +1,6 @@
 package com.sxkl.webapp.websystem.category.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sxkl.webapp.common.OperationResult;
+import com.sxkl.webapp.utils.StringUtils;
 import com.sxkl.webapp.websystem.category.entity.Category;
 import com.sxkl.webapp.websystem.category.entity.SearchComplete;
 import com.sxkl.webapp.websystem.category.service.CategoryService;
@@ -72,15 +74,16 @@ public class IncomeCategoryController extends BaseController{
 	@ResponseBody
 	public SearchComplete autocompleteCategory(String q, String accountId, String categoryType){
 //		String categoryServiceResult = categoryService.autocompleteCategory(q,accountId,categoryType);
-		
-		
-		
-		String[] arr = new String[]{"aa","aaadfdf","sdfwerwe"};
-		int length = arr.length;
-		SearchComplete result = new SearchComplete(length);
-		for(int i = 0; i < length; i++){
-			result.getSuggestions()[i] = arr[i];
-			result.getData()[i] = arr[i];
+		String categoryServiceResult = categoryService.getCategory(q,accountId,categoryType);
+		OperationResult categoryServiceOperationResult = OperationResult.deserialize(categoryServiceResult);
+		System.out.println(categoryServiceOperationResult);
+		Object data = categoryServiceOperationResult.getData();
+		ArrayList<String> arr = (ArrayList<String>) data;
+		int size = arr.size();
+		SearchComplete result = new SearchComplete(size);
+		for(int i = 0; i < size; i++){
+			result.getSuggestions()[i] = arr.get(i);
+			result.getData()[i] = arr.get(i);
 		}
 		result.setQuery(q);
 		return result;
