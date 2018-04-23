@@ -53,27 +53,7 @@ public class TallyService {
 			Specification<Tally> specification = new Specification<Tally>(){
 				@Override
 				public Predicate toPredicate(Root<Tally> root, CriteriaQuery<?> query,CriteriaBuilder criteriaBuilder) {
-					List<Predicate> predicates = Lists.newArrayList();
-					Path<String> accountIdPath = root.get("accountId");
-					predicates.add(criteriaBuilder.equal(accountIdPath, tally.getAccountId()));
-					if(StringUtils.isNotEmpty(tally.getCategoryType())){
-						Path<String> categoryTypePath = root.get("categoryType");  
-						predicates.add(criteriaBuilder.equal(categoryTypePath, tally.getCategoryType()));
-					}
-					if(ObjectUtils.isNotNull(tally.getBeginDate())){
-						Path<Date> createDatePath = root.get("createDate");  
-						predicates.add(criteriaBuilder.greaterThanOrEqualTo(createDatePath, tally.getBeginDate()));
-					}
-					if(ObjectUtils.isNotNull(tally.getEndDate())){
-						Path<Date> createDatePath = root.get("createDate");  
-						predicates.add(criteriaBuilder.lessThanOrEqualTo(createDatePath, tally.getEndDate()));
-					}
-					int size = predicates.size();
-					Predicate[] predicateArr = new Predicate[size];
-					for (int i = 0; i < size; i++) {
-						predicateArr[i] = predicates.get(i);
-					}
-					query.where(predicateArr);
+					conigureCriteriaQuery(tally, root, query, criteriaBuilder);
 					return null;
 				}
 			};
@@ -82,5 +62,48 @@ public class TallyService {
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("获取账本条目失败！错误信息："+e.getMessage());
 		}
+	}
+	
+	@SuppressWarnings("serial")
+	public String getSumMoney(Tally tally){
+		try {
+			Specification<Tally> specification = new Specification<Tally>(){
+				@Override
+				public Predicate toPredicate(Root<Tally> root, CriteriaQuery<?> query,CriteriaBuilder criteriaBuilder) {
+					query.multiselect(root.get("categoryType"),criteriaBuilder.sum(root.get("money")));
+					conigureCriteriaQuery(tally, root, query, criteriaBuilder);
+					query.groupBy(root.get("categoryType"));
+					return null;
+				}
+			};
+			List<Tally> tallies = tallyDao.findAll(specification);
+			return OperationResult.configurateSuccessResult(tallies);
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("获取账本收支总额失败！错误信息："+e.getMessage());
+		}
+	}
+	
+	private void conigureCriteriaQuery(Tally tally, Root<Tally> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+		List<Predicate> predicates = Lists.newArrayList();
+		Path<String> accountIdPath = root.get("accountId");
+		predicates.add(criteriaBuilder.equal(accountIdPath, tally.getAccountId()));
+		if(StringUtils.isNotEmpty(tally.getCategoryType())){
+			Path<String> categoryTypePath = root.get("categoryType");  
+			predicates.add(criteriaBuilder.equal(categoryTypePath, tally.getCategoryType()));
+		}
+		if(ObjectUtils.isNotNull(tally.getBeginDate())){
+			Path<Date> createDatePath = root.get("createDate");  
+			predicates.add(criteriaBuilder.greaterThanOrEqualTo(createDatePath, tally.getBeginDate()));
+		}
+		if(ObjectUtils.isNotNull(tally.getEndDate())){
+			Path<Date> createDatePath = root.get("createDate");  
+			predicates.add(criteriaBuilder.lessThanOrEqualTo(createDatePath, tally.getEndDate()));
+		}
+		int size = predicates.size();
+		Predicate[] predicateArr = new Predicate[size];
+		for (int i = 0; i < size; i++) {
+			predicateArr[i] = predicates.get(i);
+		}
+		query.where(predicateArr);
 	}
 }

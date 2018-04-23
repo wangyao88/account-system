@@ -66,4 +66,11 @@ public class TallyController extends BaseController{
 		String pageSize = request.getParameter("pageSize");
 		return tallyService.findTallyPage(json.toString(),pageIndex,pageSize);
 	}
+	
+	@PostMapping("/getSumMoney")
+	@ResponseBody
+	public String getSumMoney(HttpServletRequest request){
+		JsonObject json = RequestUtils.convert2Json(request);
+		return tallyService.getSumMoney(json.toString());
+	}
 }

@@ -21,4 +21,9 @@ public class TallyServiceFallback extends BaseServiceFallback implements TallySe
 	public String findTallyPage(String tally, String pageIndex, String pageSize) {
 		return getServiceErrorResult("分页查询失败");
 	}
+
+	@Override
+	public String getSumMoney(String tally) {
+		return getServiceErrorResult("查询账本条目总额失败");
+	}
 }

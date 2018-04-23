@@ -17,4 +17,7 @@ public interface TallyService {
 
 	@PostMapping("/findTallyPage")
 	String findTallyPage(@RequestParam("tally")String tally, @RequestParam("pageIndex")String pageIndex, @RequestParam("pageSize")String pageSize);
+
+	@PostMapping("/getSumMoney")
+	String getSumMoney(@RequestParam("tally")String tally);
 }

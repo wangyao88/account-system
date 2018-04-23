@@ -31,4 +31,10 @@ public class TallyController {
 		Tally bean = (Tally) JsonUtils.convert2Bean(tally, Tally.class);
 		return tallService.findPage(bean, pageIndex, pageSize);
 	}
+	
+	@PostMapping("/getSumMoney")
+	public String getSumMoney(String tally){
+		Tally bean = (Tally) JsonUtils.convert2Bean(tally, Tally.class);
+		return tallService.getSumMoney(bean);
+	}
 }
