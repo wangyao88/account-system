@@ -48,3 +48,17 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COMMENT = '收支类别表';
 
+
+CREATE TABLE `account`.`a_tally` (
+  `id` VARCHAR(36) NOT NULL COMMENT '主键',
+  `money` FLOAT NULL COMMENT '金额',
+  `create_date` DATETIME NULL COMMENT '创建日期',
+  `category_type` VARCHAR(10) NULL COMMENT '收支类型',
+  `category_id` VARCHAR(36) NULL COMMENT '类别主键',
+  `category_name` VARCHAR(45) NULL COMMENT '类别名称',
+  `account_id` VARCHAR(36) NULL COMMENT '账本主键',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COMMENT = '金额表';
+

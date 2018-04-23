@@ -107,14 +107,9 @@ function initCategoryTypeSelect(){
 }
 
 function initAutocomplete(){
-//	var onAutocompleteSelect =function(value, data) {  　　
-//　　            //根据返回结果自定义一些操作
-//    }; 
 	var url = "incomecategory/autocompleteCategory";
     var options = {
-//        matchContains: true,
         mustMatch : true,
-//		minChars: 0,
         dataType : "json",
         extraParams: { 
         	accountId: function() {
@@ -128,12 +123,61 @@ function initAutocomplete(){
 			return value;
 		}
     };
-    var cities = [
-    	"Aberdeen", "Ada", "Adamsville", "Addyston", "Adelphi", "Adena", "Adrian", "Akron"];
-    $('#categoryId').autocomplete(url,options);
+    $('#categoryName').autocomplete(url,options);
 }
 
-initWizard();
-initAccountBookSelect();
-initCategoryTypeSelect();
-initAutocomplete();
+function initDateTimePicker(){
+	$('.datetimepicker-default').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii:ss'
+        });
+}
+
+(function init(){
+	initWizard();
+	initAccountBookSelect();
+	initCategoryTypeSelect();
+	initAutocomplete();
+	initDateTimePicker();
+})();
+
+function saveTally(){
+	var accountId = $('#accountId').val();
+	var categoryType = $('#categoryType').val();
+	var categoryName = $('#categoryName').val();
+	var createDate = $('#createDate').val();
+	var money = $('#money').val();
+	$.ajax({
+		url :"tally/save",
+		type : "post",
+		data : {
+			money : money,
+			createDate : createDate,
+			categoryType : categoryType,
+			categoryName : categoryName,
+			accountId : accountId
+		},
+		dataType : "json",
+		success : function(result) {
+			if(result.status){
+				layer.alert(result.data, {
+	    			skin : 'layui-layer-lan',
+	    			closeBtn : 1,
+	    			anim : 4 //动画类型
+	    		}) ;
+				$("#previous").trigger("click");
+				$('#createDate').val('');
+				$('#money').val('');
+				
+				$("#previous").trigger("click");
+				$('#categoryName').val('');
+				
+				$("#previous").trigger("click");
+				$('#categoryType').val('');
+				
+				$("#previous").trigger("click");
+			}
+		}
+	});
+}
+
+

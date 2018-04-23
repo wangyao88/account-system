@@ -57,4 +57,8 @@ public class CategoryServiceFallback extends BaseServiceFallback implements Cate
 		return getServiceErrorResult("获取类别失败");
 	}
 
+	@Override
+	public String getCategoryId(String name, String accountId, String categoryType) {
+		return getServiceErrorResult("获取类别失败");
+	}
 }

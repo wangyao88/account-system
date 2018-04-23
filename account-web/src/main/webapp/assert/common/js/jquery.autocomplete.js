@@ -681,8 +681,6 @@ $.Autocompleter.Select = function (options, input, select, config) {
 		for (var i=0; i < max; i++) {
 			if (!data[i])
 				continue;
-			console.log(data);
-			console.log(data[i].data);
 			var formatted = options.formatItem(data[i].data, i+1, max, data[i].value, term);
 			if ( formatted === false )
 				continue;

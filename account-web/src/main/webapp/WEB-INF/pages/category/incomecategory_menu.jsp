@@ -26,7 +26,13 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="tally/index"><i class="fa fa-slack fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">记账</span></a>
+            <li><a href="#"><i class="fa fa-slack fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">记账管理</span><span class="fa arrow"></span></a>
+            	<ul class="nav nav-second-level">
+                    <li><a href="tally/index"><i class="fa fa-chain"></i><span class="submenu-title">记账</span></a>
+                    </li>
+                    <li><a href="tally/list"><i class="fa fa-group"></i><span class="submenu-title">查账</span></a>
+                    </li>
+                </ul>
             </li>
             <li><a href="#"><i class="fa fa-send-o fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">财富统计</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

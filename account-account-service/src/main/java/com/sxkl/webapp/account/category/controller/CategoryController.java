@@ -61,4 +61,9 @@ public class CategoryController {
 	public String getCategory(String name, String accountId, String categoryType) {
 		return categoryService.getCategory(name,accountId,categoryType);
 	}
+	
+	@PostMapping("/getCategoryId")
+	public String getCategoryId(String name, String accountId, String categoryType) {
+		return categoryService.getCategoryId(name,accountId,categoryType);
+	}
 }

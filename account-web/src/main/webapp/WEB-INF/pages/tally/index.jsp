@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>爱记账-支出类别管理</title>
+    <title>爱记账-记账</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/jquery-bootstrap-wizard/custom.css">
     <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/jquery-steps/css/jquery.steps.css">
     <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/tally/jquery.autocomplete.css">
+    
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
 </head>
 
 <body class=" ">
@@ -27,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<%@ include file="../common/header.jsp"%>
 		<div id="wrapper">
-			<%@ include file="menu.jsp"%>
+			<%@ include file="index_menu.jsp"%>
 			<!--BEGIN PAGE WRAPPER-->
 			<div id="page-wrapper">
 				<!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -42,7 +44,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="page-content">
 					<div class="row"><!-- 流程  start-->
                         <div class="col-lg-12">
-                        	
                         	<div class="col-lg-12">
                             <div class="portlet box portlet-green">
                                 <div class="portlet-header">
@@ -75,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <div id="tab1-wizard-custom-circle" class="tab-pane">
                                                 <div class="row">
 	                                                <div class="col-lg-4">
-							                            <div class="panel panel-yellow">
+							                            <div class="panel panel-violet">
 							                                <div class="panel-heading">选择账本</div>
 							                                <div class="panel-body pan">
 							                                    <form action="#" class="form-horizontal" style="margin-top:6px;">
@@ -96,8 +97,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             </div>
                                             <div id="tab2-wizard-custom-circle" class="tab-pane">
                                                 <div class="row">
-	                                                <div class="col-lg-4">
-							                            <div class="panel panel-yellow">
+	                                                <div class="col-lg-4"  style="margin-left:15%;">
+							                            <div class="panel panel-green">
 							                                <div class="panel-heading">选择收支类型</div>
 							                                <div class="panel-body pan">
 							                                    <form action="#" class="form-horizontal" style="margin-top:6px;">
@@ -118,8 +119,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             </div>
                                             <div id="tab3-wizard-custom-circle" class="tab-pane fadeIn">
                                                 <div class="row">
-	                                                <div class="col-lg-4">
-							                            <div class="panel panel-yellow">
+	                                                <div class="col-lg-4"  style="margin-left:35%;">
+							                            <div class="panel panel-blue">
 							                                <div class="panel-heading">选择列别</div>
 							                                <div class="panel-body pan">
 							                                    <form action="#" class="form-horizontal" style="margin-top:6px;">
@@ -128,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                                                        </label>
 				                                                        <div class="col-sm-5">
 				                                                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-user"></i></span>
-				                                                                <input type="text" id="categoryId"/>
+				                                                                <input type="text" id="categoryName"/>
 				                                                            </div>
 				                                                        </div>
 				                                                    </div>
@@ -139,26 +140,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                         </div>
                                             </div>
                                             <div id="tab4-wizard-custom-circle" class="tab-pane fadeIn">
-                                                <h3 class="mbxl">Thank you!</h3>
-                                                <p>Congragulation! You have completed checkout steps.</p>
-                                                <p>Thank you for use our products.</p>
+                                                <div class="row">
+	                                                <div class="col-lg-4"  style="margin-left:55%;">
+							                            <div class="panel panel-orange">
+							                                <div class="panel-heading">金额</div>
+							                                <div class="panel-body pan">
+							                                    <form action="#" class="form-horizontal" style="margin-top:6px;">
+				                                                    <div class="form-group">
+				                                                        <label for="createDate" class="col-sm-3 control-label">日期 <span class='require'>*</span>
+				                                                        </label>
+				                                                        <div class="col-sm-6">
+				                                                             <div class="input-group datetimepicker-default date">
+						                                                          <input type="text" id="createDate" name="datetime"  data-date-format="yyyy-mm-dd hh:mm:ss" class="form-control" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						                                                     </div>
+				                                                        </div>
+				                                                    </div>
+				                                                    <div class="form-group">
+				                                                        <label for="money" class="col-sm-3 control-label">金额<span class='require'>*</span>
+				                                                        </label>
+				                                                        <div class="col-sm-5">
+				                                                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-user"></i></span>
+				                                                                <input type="text" id="money"/>
+				                                                            </div>
+				                                                        </div>
+				                                                    </div>
+				                                                </form>
+							                                </div>
+							                            </div>
+							                         </div>
+						                         </div>
                                             </div>
                                             <div id="tab5-wizard-custom-circle" class="tab-pane fadeIn">
-                                                <button type="button" class="btn btn-green btn-square" onclick="">狠狠地记上一笔</button>
+                                            	<div class="row">
+	                                                <div class="col-lg-3"  style="margin-left:75%;">
+							                            <div class="panel panel-red">
+							                                <div class="panel-heading">记账</div>
+							                                <div class="panel-body pan">
+							                                	<form action="#" class="form-horizontal" style="margin-top:6px;">
+				                                                    <div class="form-group">
+				                                                        <label for="savetally" class="col-sm-3 control-label"><span class='require'></span>
+				                                                        </label>
+				                                                        <div class="col-sm-5">
+				                                                            <button type="button" class="btn btn-green btn-square" onclick="saveTally()">狠狠地记上一笔</button>
+				                                                        </div>
+				                                                    </div>
+				                                                </form>
+							                                </div>
+							                            </div>
+							                         </div>
+						                         </div>
                                             </div>
                                             <div class="action text-right">
-                                                <button type="button" name="previous" value="Previous" class="btn btn-info button-previous"><i class="fa fa-arrow-circle-o-left mrx"></i>上一步</button>
-                                                <button type="button" name="next" value="Next" class="btn btn-info button-next mlm">下一步<i class="fa fa-arrow-circle-o-right mlx"></i>
-                                                </button>
+                                                <button type="button" name="previous" value="Previous" class="btn btn-info button-previous" id="previous"><i class="fa fa-arrow-circle-o-left mrx"></i>上一步</button>
+                                                <button type="button" name="next" value="Next" class="btn btn-info button-next mlm">下一步<i class="fa fa-arrow-circle-o-right mlx"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        	
-                        	
-                        	
                         </div>
                     </div><!-- 流程  end-->
 				</div>
@@ -177,6 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type='text/javascript' src='<%=basePath%>assert/common/js/jquery.ajaxQueue.js'></script>
 	<script type='text/javascript' src='<%=basePath%>assert/common/js/thickbox-compressed.js'></script>
     <script type="text/javascript" src="<%=basePath%>assert/common/js/jquery.autocomplete.js"></script>
+    <script src="<%=basePath%>assert/theme/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 	<script type="text/javascript" src="<%=basePath%>assert/tally/tally.js"></script>
 </body>
 </html>

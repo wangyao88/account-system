@@ -4,6 +4,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.JsonElement;
+
 /**
  * @author: wangyao
  * @date: 2018年4月19日 下午12:48:34
@@ -39,4 +41,7 @@ public interface CategoryService {
 
 	@PostMapping("/getCategory")
 	String getCategory(@RequestParam("name")String name, @RequestParam("accountId")String accountId, @RequestParam("categoryType")String categoryType);
+
+	@PostMapping("/getCategoryId")
+	String getCategoryId(@RequestParam("name")String name, @RequestParam("accountId")String accountId, @RequestParam("categoryType")String categoryType);
 }

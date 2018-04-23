@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sxkl.webapp.common.OperationResult;
-import com.sxkl.webapp.utils.StringUtils;
 import com.sxkl.webapp.websystem.category.entity.Category;
 import com.sxkl.webapp.websystem.category.entity.SearchComplete;
 import com.sxkl.webapp.websystem.category.service.CategoryService;
@@ -70,13 +69,12 @@ public class IncomeCategoryController extends BaseController{
 		return categoryService.updateIncomeCategory(id,name);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("/autocompleteCategory")
 	@ResponseBody
 	public SearchComplete autocompleteCategory(String q, String accountId, String categoryType){
-//		String categoryServiceResult = categoryService.autocompleteCategory(q,accountId,categoryType);
 		String categoryServiceResult = categoryService.getCategory(q,accountId,categoryType);
 		OperationResult categoryServiceOperationResult = OperationResult.deserialize(categoryServiceResult);
-		System.out.println(categoryServiceOperationResult);
 		Object data = categoryServiceOperationResult.getData();
 		ArrayList<String> arr = (ArrayList<String>) data;
 		int size = arr.size();

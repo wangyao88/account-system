@@ -21,4 +21,6 @@ public interface ICategoryJpaDao extends JpaRepository<Category, String> {
 
 	 List<Category> findByTypeAndAccountIdAndNameLike(String categoryType, String accountId, String name);
 
+	Category findByNameAndAccountIdAndType(String name, String accountId, String categoryType);
+
 }

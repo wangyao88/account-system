@@ -15,6 +15,7 @@ import com.sxkl.webapp.account.category.dao.ICategoryJpaDao;
 import com.sxkl.webapp.account.category.entity.Category;
 import com.sxkl.webapp.account.category.entity.CategoryType;
 import com.sxkl.webapp.common.OperationResult;
+import com.sxkl.webapp.utils.ObjectUtils;
 import com.sxkl.webapp.utils.StringUtils;
 
 /**
@@ -108,7 +109,6 @@ public class CategoryService {
 
 	public String getCategory(String name, String accountId, String categoryType) {
 		try {
-			System.out.println("name="+name+"; accountId="+accountId+"; categoryType="+categoryType);
 			name = StringUtils.append(name, "%","%");
 			List<Category> categories = categoryDao.findByTypeAndAccountIdAndNameLike(categoryType,accountId,name);
 			if(categories.isEmpty()){
@@ -119,6 +119,18 @@ public class CategoryService {
 				datas.add(category.getName());
 			}
 			return OperationResult.configurateSuccessResult(datas);
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("类别修改失败！错误信息："+e.getMessage());
+		}
+	}
+
+	public String getCategoryId(String name, String accountId, String categoryType) {
+		try {
+			Category category = categoryDao.findByNameAndAccountIdAndType(name,accountId,categoryType);
+			if(ObjectUtils.isNull(category)){
+				return OperationResult.configurateFailureResult("类别修改失败！错误信息：null");
+			}
+			return OperationResult.configurateSuccessResult(category.getId());
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("类别修改失败！错误信息："+e.getMessage());
 		}
