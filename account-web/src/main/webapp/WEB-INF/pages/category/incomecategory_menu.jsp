@@ -8,7 +8,7 @@
                     <ul class="list-inline list-unstyled">
                         <li><a href="extra-profile.html" data-hover="tooltip" title="个人信息"><i class="fa fa-user"></i></a>
                         </li>
-                        <li><a href="extra-signin.html" data-hover="tooltip" title="退出"><i class="fa fa-sign-out"></i></a>
+                        <li><a href="logout" data-hover="tooltip" title="退出"><i class="fa fa-sign-out"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -36,11 +36,11 @@
             </li>
             <li><a href="#"><i class="fa fa-send-o fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">财富统计</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="ui-generals.html"><i class="fa fa-briefcase"></i><span class="submenu-title">收入统计</span></a>
+                    <li><a href="statistics/income/index"><i class="fa fa-briefcase"></i><span class="submenu-title">收入统计</span></a>
                     </li>
-                    <li><a href="ui-portlets.html"><i class="fa fa-instagram"></i><span class="submenu-title">支出统计</span></a>
+                    <li><a href="statistics/outcome/index"><i class="fa fa-instagram"></i><span class="submenu-title">支出统计</span></a>
                     </li>
-                    <li><a href="ui-buttons.html"><i class="fa fa-hand-o-up"></i><span class="submenu-title">总和统计</span></a>
+                    <li><a href="statistics/all/index"><i class="fa fa-hand-o-up"></i><span class="submenu-title">总和统计</span></a>
                     </li>
                 </ul>
             </li>

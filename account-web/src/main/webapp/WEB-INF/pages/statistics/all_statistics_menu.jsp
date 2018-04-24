@@ -16,7 +16,7 @@
             </li>
             <li><a href="main"><i class="fa fa-tachometer fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">首页</span></a>
             </li>
-            <li class="active"><a href="accountbook/index" target="_self"><i class="fa fa-bullhorn fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">账本管理</span></a>
+            <li><a href="accountbook/index" target="_self"><i class="fa fa-bullhorn fa-fw"><div class="icon-bg bg-orange"></div></i><span class="menu-title">账本管理</span></a>
             </li>
             <li><a href="#"><i class="fa fa-desktop fa-fw"><div class="icon-bg bg-pink"></div></i><span class="menu-title">收支类别管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -34,13 +34,13 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-send-o fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">财富统计</span><span class="fa arrow"></span></a>
+            <li class="active"><a href="#"><i class="fa fa-send-o fa-fw"><div class="icon-bg bg-green"></div></i><span class="menu-title">财富统计</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="statistics/income/index"><i class="fa fa-briefcase"></i><span class="submenu-title">收入统计</span></a>
                     </li>
                     <li><a href="statistics/outcome/index"><i class="fa fa-instagram"></i><span class="submenu-title">支出统计</span></a>
                     </li>
-                    <li><a href="statistics/all/index"><i class="fa fa-hand-o-up"></i><span class="submenu-title">总和统计</span></a>
+                    <li class="active"><a href="statistics/all/index"><i class="fa fa-hand-o-up"></i><span class="submenu-title">总和统计</span></a>
                     </li>
                 </ul>
             </li>

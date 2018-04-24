@@ -77,6 +77,8 @@ function initTallyTable(pageIndex, isInitPagination){
 		dataType : "json",
 		success : function(result) {
 			if(result.status){
+				$("#outcome_span").html("支出：0元");
+				$("#income_span").html("收入：0元");
 				var total = result.total;
 				if(isInitPagination){
 					initPagination(total);

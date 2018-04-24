@@ -63,6 +63,13 @@ public class LoginController extends BaseController{
 		return result;
 	}
 	
+	@GetMapping("/logout")
+	public ModelAndView logout(String name, String password, HttpServletRequest request){
+		request.getSession().removeAttribute(Constants.USER_KEY_IN_SESSION);
+		request.getSession().invalidate();
+		return loginPage();
+	}
+	
 	@PostMapping("/getPublicKey")
 	@ResponseBody
 	public String getPublicKey(){
