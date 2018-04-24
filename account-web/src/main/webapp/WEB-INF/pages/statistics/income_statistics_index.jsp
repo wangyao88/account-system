@@ -47,34 +47,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                    <form action="#" class="form-horizontal">
 	                                        <div class="form-body pal">
 	                                            <div class="form-group">
-	                                                <label for="inputName" class="col-md-3 control-label">账本</label>
-	                                                <div class="col-md-9">
-	                                                    <div class="input-icon right"><i class="fa fa-stack-exchange"></i>
-	                                                        <input id="inputName" type="text" placeholder="" class="form-control">
-	                                                    </div>
-	                                                </div>
-	                                            </div>
+			                                        <label for="account" class="col-sm-3 control-label">账本</label>
+			                                        <div class="col-sm-5">
+			                                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-stack-exchange"></i></span>
+			                                                <select id="accountId" class="form-control"></select>
+			                                            </div>
+			                                        </div>
+			                                    </div>
 	                                            <div class="form-group">
-	                                                <label for="inputName" class="col-md-3 control-label">开始时间</label>
-	                                                <div class="col-md-9">
-	                                                    <div class="input-icon right"><i class="fa fa-fighter-jet"></i>
-	                                                        <input id="inputName" type="text" placeholder="" class="form-control">
-	                                                    </div>
-	                                                </div>
-	                                            </div>
+			                                        <label for="account" class="col-sm-3 control-label">开始时间</label>
+			                                        <div class="col-sm-5">
+			                                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-fighter-jet"></i></span>
+			                                                <input id="beginDate" type="text" class="datepicker-default form-control" />
+			                                            </div>
+			                                        </div>
+			                                    </div>
 	                                            <div class="form-group">
-	                                                <label for="inputName" class="col-md-3 control-label">结束时间</label>
-	                                                <div class="col-md-9">
-	                                                    <div class="input-icon right"><i class="fa fa-key"></i>
-	                                                        <input id="inputName" type="text" placeholder="" class="form-control">
-	                                                    </div>
-	                                                </div>
+	                                                <label for="account" class="col-sm-3 control-label">结束时间</label>
+			                                        <div class="col-sm-5">
+			                                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-key"></i></span>
+			                                                <input id="endDate" type="text" class="datepicker-default form-control" />
+			                                            </div>
+			                                        </div>
 	                                            </div>
 	                                        </div>
 	                                        <div class="form-actions pal">
 	                                            <div class="form-group mbn">
 	                                                <div class="col-md-offset-5 col-md-6">
-	                                                    <button type="submit" class="btn btn-primary">统计</button>
+	                                                    <button type="button" class="btn btn-orange btn-square" onclick="statistics()">统计</button>
 	                                                </div>
 	                                            </div>
 	                                        </div>

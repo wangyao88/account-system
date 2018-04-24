@@ -20,4 +20,7 @@ public interface TallyService {
 
 	@PostMapping("/getSumMoney")
 	String getSumMoney(@RequestParam("tally")String tally);
+
+	@PostMapping("/getCategoryData")
+	String getIncomeCategoryData(@RequestParam("tally")String tally);
 }

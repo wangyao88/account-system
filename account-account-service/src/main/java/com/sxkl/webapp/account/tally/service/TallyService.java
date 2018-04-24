@@ -156,4 +156,29 @@ public class TallyService{
 		Predicate[] predicateArr = new Predicate[size];
 		query.where(predicates.toArray(predicateArr));
 	}
+
+	public String getCategoryData(Tally tally) {
+		try {
+			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
+			Root<Tally> root = criteriaQuery.from(Tally.class);
+			criteriaQuery.groupBy(root.get("categoryName"));
+			conigureCriteriaQuery(tally, root, criteriaQuery, criteriaBuilder);
+			criteriaQuery.multiselect(root.get("categoryName").alias("categoryName"),criteriaBuilder.sum(root.get("money")).alias("money"));
+			TypedQuery<Tuple> typedQuery = entityManager.createQuery(criteriaQuery);
+			List<Tuple> datas = typedQuery.getResultList();
+			List<Tally> result = Lists.newArrayList();
+			for(Tuple tuple : datas){
+				String categoryName = tuple.get("categoryName").toString();
+				String money = tuple.get("money").toString();
+				Tally bean = new Tally();
+				bean.setCategoryName(categoryName);
+				bean.setMoney(Float.parseFloat(money));
+				result.add(bean);
+			}
+			return OperationResult.configurateSuccessResult(result);
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("获取账本类别分组总额失败！错误信息："+e.getMessage());
+		}
+	}
 }

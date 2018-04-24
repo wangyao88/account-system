@@ -1,16 +1,81 @@
-function initIncomeStatisticsBarHeight(){
+var income_statistics_bar;
+
+function initSearchPanel(){
+	$.ajax({
+		url :"accountbook/getAccountBooks",
+		type : "post",
+		dataType : "json",
+		success : function(result) {
+			if(result.status){
+				var accountbooks = result.data;
+				var html = "";
+				$(accountbooks).each(function(index,accountbook){
+					if(index == 0){
+						html +='<option selected="selected" value="'+accountbook.id+'">'+accountbook.name+'</option>';
+						return;
+					}
+					html +='<option value="'+accountbook.id+'">'+accountbook.name+'</option>';
+			    });
+				$("#accountId").html(html);
+				initTallyTable(0,true);
+			}
+		}
+	});
+
+	$('.datepicker-default').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+}
+
+function initStatisticsChartHeight(){
 	var height = $("#search_panel").height();
 	$("#income_statistics_bar").height(height);
 }
 
+function initStatisticsChart(){
+	income_statistics_bar = echarts.init(document.getElementById('income_statistics_bar'));
+}
+
 function initIncomeStatisticsBarChart(){
-	var income_statistics_bar = echarts.init(document.getElementById('income_statistics_bar'));
+	var data = {
+		accountId : $('#accountId').val(),
+		categoryType : 'INCOME'
+	};
+	var beginDate = $('#beginDate').val();
+	if(beginDate){
+		data.beginDate = beginDate;
+	}
+	var endDate = $('#endDate').val();
+	if(endDate){
+		data.endDate = endDate;
+	}
+	$.ajax({
+		url :"statistics/getIncomeCategoryData",
+		type : "post",
+		data : data,
+		dataType : "json",
+		success : function(result) {
+			if(result.status){
+				var accountName = $("#accountId").find("option:selected").text();
+				var tallies = result.data;
+				var xAxis_data = new Array();
+				var series_data = new Array();
+				$(tallies).each(function(index,tally){
+					xAxis_data.push(tally.categoryName);
+					series_data.push(tally.money);
+			    });
+				initIncomeStatisticsBarData(accountName,xAxis_data,series_data);
+			}
+		}
+	});
+}
+
+function initIncomeStatisticsBarData(accountName,xAxis_data,series_data){
 	var option = {
 	    title: {
 	        x: 'center',
-	        text: 'ECharts例子个数统计',
-	        subtext: 'Rainbow bar example',
-	        link: 'http://echarts.baidu.com/doc/example.html'
+	        text: '收入统计',
+	        subtext: '账本：'+accountName
 	    },
 	    tooltip: {
 	        trigger: 'item'
@@ -33,7 +98,7 @@ function initIncomeStatisticsBarChart(){
 	        {
 	            type: 'category',
 	            show: false,
-	            data: ['Line', 'Bar', 'Scatter', 'K', 'Pie', 'Radar', 'Chord', 'Force', 'Map', 'Gauge', 'Funnel']
+	            data: xAxis_data
 	        }
 	    ],
 	    yAxis: [
@@ -64,7 +129,7 @@ function initIncomeStatisticsBarChart(){
 	                    }
 	                }
 	            },
-	            data: [12,21,10,4,12,5,6,5,25,23,7],
+	            data: series_data,
 	            markPoint: {
 	                tooltip: {
 	                    trigger: 'item',
@@ -76,7 +141,7 @@ function initIncomeStatisticsBarChart(){
 	                    }
 	                },
 	                data: [
-	                    {xAxis:0, y: 350, name:'Line', symbolSize:20, symbol: 'image://../asset/ico/折线图.png'},
+	                    {xAxis:0, y: 350, name:'Line', symbolSize:20, symbol: 'image://ico/折线图.png'},
 	                    {xAxis:1, y: 350, name:'Bar', symbolSize:20, symbol: 'image://../asset/ico/柱状图.png'},
 	                    {xAxis:2, y: 350, name:'Scatter', symbolSize:20, symbol: 'image://../asset/ico/散点图.png'},
 	                    {xAxis:3, y: 350, name:'K', symbolSize:20, symbol: 'image://../asset/ico/K线图.png'},
@@ -95,9 +160,14 @@ function initIncomeStatisticsBarChart(){
 	income_statistics_bar.setOption(option);
 }
 
-(function(){
-	initIncomeStatisticsBarHeight();
+function statistics(){
 	initIncomeStatisticsBarChart();
+}
+
+(function(){
+	initSearchPanel();
+	initStatisticsChartHeight();
+	initStatisticsChart();
 })();
 
 
