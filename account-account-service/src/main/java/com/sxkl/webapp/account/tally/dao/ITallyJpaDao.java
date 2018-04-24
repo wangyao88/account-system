@@ -17,4 +17,6 @@ public interface ITallyJpaDao extends JpaRepository<Tally, String>, JpaSpecifica
 
 	Page<Tally> findAllByOrderByCreateDateDesc(Example<Tally> example, Pageable pageable);
 	
+//	@Query("select category_type ad categoryType, sum(money) as money from a_tally where account_id = :accountid group by category_type")
+//	List<Object[]> getSearchSumMoney(@Param("accountid")String accountid);
 }

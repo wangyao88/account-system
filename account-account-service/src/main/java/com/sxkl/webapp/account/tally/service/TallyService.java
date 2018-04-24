@@ -3,6 +3,10 @@ package com.sxkl.webapp.account.tally.service;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Tuple;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
@@ -29,11 +33,13 @@ import com.sxkl.webapp.utils.StringUtils;
  * @description: 
  */
 @Service
-public class TallyService {
+public class TallyService{
 
 	@Autowired
 	private ITallyJpaDao tallyDao;
-
+	@PersistenceContext
+	private EntityManager entityManager;
+	
 	public String save(Tally tally) {
 		try {
 			if(ObjectUtils.isNull(tally.getMoney())){
@@ -58,9 +64,36 @@ public class TallyService {
 				}
 			};
 			Page<Tally> pages =  tallyDao.findAll(specification, pageable);
-			return OperationResult.configurateSuccessDataGridResult(pages.getContent(), pages.getTotalPages());
+			int total = pages.getTotalPages();
+			List<Tally> sumMoneys = getSearchSumMoney(tally);
+			List<Tally> datas = pages.getContent();
+			List<Tally> result = Lists.newArrayList(datas);
+			result.addAll(sumMoneys);
+			return OperationResult.configurateSuccessDataGridResult(result, total);
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("获取账本条目失败！错误信息："+e.getMessage());
+		}
+	}
+	
+	private List<Tally> getSearchSumMoney(Tally tally){
+		try {
+			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
+			Root<Tally> root = criteriaQuery.from(Tally.class);
+			criteriaQuery.groupBy(root.get("categoryType"));
+			conigureCriteriaQuery(tally, root, criteriaQuery, criteriaBuilder);
+			criteriaQuery.multiselect(root.get("categoryType").alias("categoryType"),criteriaBuilder.sum(root.get("money")).alias("money"));
+			TypedQuery<Tuple> typedQuery = entityManager.createQuery(criteriaQuery);
+			List<Tuple> datas = typedQuery.getResultList();
+			List<Tally> result = Lists.newArrayList();
+			for(Tuple tuple : datas){
+				String categoryType = tuple.get("categoryType").toString();
+				String money = tuple.get("money").toString();
+				result.add(new Tally(categoryType,Float.parseFloat(money)));
+			}
+			return result;
+		} catch (Exception e) {
+			return Lists.newArrayList();
 		}
 	}
 	
@@ -101,9 +134,6 @@ public class TallyService {
 		}
 		int size = predicates.size();
 		Predicate[] predicateArr = new Predicate[size];
-		for (int i = 0; i < size; i++) {
-			predicateArr[i] = predicates.get(i);
-		}
-		query.where(predicateArr);
+		query.where(predicates.toArray(predicateArr));
 	}
 }

@@ -93,6 +93,18 @@ function initTallyTable(pageIndex, isInitPagination){
 }
 
 function getTrHtml(index,tally){
+	if(!tally.id){
+		var span_html = "";
+		if(tally.categoryType == 'OUTCOME'){
+			span_html = "支出："+tally.money+"元";
+			$("#outcome_span").html(span_html);
+		}
+		if(tally.categoryType == 'INCOME'){
+			span_html = "收入："+tally.money+"元";
+			$("#income_span").html(span_html);
+		}
+		return "";
+	}
 	var categoryType = "";
 	if(tally.categoryType == 'OUTCOME'){
 		categoryType = "支出";

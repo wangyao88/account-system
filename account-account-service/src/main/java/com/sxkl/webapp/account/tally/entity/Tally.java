@@ -52,4 +52,14 @@ public class Tally {
 	
 	@Transient
 	private Date endDate;
+	
+	public Tally() {
+		super();
+	}
+
+	public Tally(String categoryType, float money) {
+		super();
+		this.money = money;
+		this.categoryType = categoryType;
+	}
 }

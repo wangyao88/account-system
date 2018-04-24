@@ -12,6 +12,7 @@
         <module>account-register-service</module>
         <module>account-common-service</module>
         <module>account-gateway-service</module>
+        <module>account-account-service</module>
         <module>account-logincenter-service</module>
     </modules>
 

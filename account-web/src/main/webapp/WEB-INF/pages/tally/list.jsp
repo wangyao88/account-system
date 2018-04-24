@@ -103,6 +103,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 					
+					<div class="row" id="sum_money_row">
+						<div class="col-sm-6 col-md-3">
+                             <div class="panel profit db mbm">
+                                 <div class="panel-body">
+                                     <h4 class="value">
+                                     	<span id="income_span" data-counter="" data-start="10" data-end="50" data-step="1" data-duration="0">收入：0元</span>
+                                     </h4>
+                                     <div class="progress progress-sm mbn">
+                                         <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;" class="progress-bar progress-bar-success"><span class="sr-only">50% Complete (success)</span>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <div class="panel profit db mbm">
+                                 <div class="panel-body">
+                                     <h4 class="value">
+                                     	<span id="outcome_span" data-counter="" data-start="10" data-end="50" data-step="1" data-duration="0">支出：0元</span>
+                                     </h4>
+                                     <div class="progress progress-sm mbn">
+                                         <div role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;" class="progress-bar progress-bar-danger"><span class="sr-only">80% Complete (success)</span>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+					</div>
+					
 					<div class="row" id="list_row">
 						<div class="col-lg-12">
                             <div class="portlet box">
