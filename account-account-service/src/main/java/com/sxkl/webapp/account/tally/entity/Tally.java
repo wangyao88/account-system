@@ -59,7 +59,16 @@ public class Tally {
 
 	public Tally(String categoryType, float money) {
 		super();
-		this.money = money;
 		this.categoryType = categoryType;
+		this.money = money;
 	}
+
+	public Tally(String accountId, String categoryType, float money) {
+		super();
+		this.accountId = accountId;
+		this.categoryType = categoryType;
+		this.money = money;
+	}
+	
+	
 }

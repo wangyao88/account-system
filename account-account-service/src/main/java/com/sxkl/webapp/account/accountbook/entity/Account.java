@@ -42,8 +42,8 @@ public class Account {
 	private String userId;
 
 	@Transient
-	private double income;
+	private float income;
 	
 	@Transient
-	private double outcome;
+	private float outcome;
 }

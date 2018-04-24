@@ -22,7 +22,6 @@ public class TallyController {
 	@PostMapping("/saveTally")
 	public String save(String tally){
 		Tally bean = (Tally) JsonUtils.convert2Bean(tally, Tally.class);
-		System.out.println(bean);
 		return tallService.save(bean);
 	}
 	

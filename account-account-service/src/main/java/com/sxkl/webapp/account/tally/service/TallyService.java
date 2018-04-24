@@ -116,6 +116,26 @@ public class TallyService{
 		}
 	}
 	
+	public List<Tally> getSumPerAccount(){
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
+		Root<Tally> root = criteriaQuery.from(Tally.class);
+		criteriaQuery.groupBy(root.get("categoryType"),root.get("accountId"));
+		criteriaQuery.multiselect(root.get("accountId").alias("accountId"),
+								  root.get("categoryType").alias("categoryType"),
+								  criteriaBuilder.sum(root.get("money")).alias("money"));
+		TypedQuery<Tuple> typedQuery = entityManager.createQuery(criteriaQuery);
+		List<Tuple> datas = typedQuery.getResultList();
+		List<Tally> result = Lists.newArrayList();
+		for(Tuple tuple : datas){
+			String accountId = tuple.get("accountId").toString();
+			String categoryType = tuple.get("categoryType").toString();
+			String money = tuple.get("money").toString();
+			result.add(new Tally(accountId,categoryType,Float.parseFloat(money)));
+		}
+		return result;
+	}
+	
 	private void conigureCriteriaQuery(Tally tally, Root<Tally> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 		List<Predicate> predicates = Lists.newArrayList();
 		Path<String> accountIdPath = root.get("accountId");

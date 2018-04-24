@@ -1,14 +1,19 @@
 package com.sxkl.webapp.account.accountbook.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Maps;
 import com.sxkl.webapp.account.accountbook.dao.IAccountDao;
 import com.sxkl.webapp.account.accountbook.entity.Account;
+import com.sxkl.webapp.account.tally.entity.Tally;
+import com.sxkl.webapp.account.tally.service.TallyService;
 import com.sxkl.webapp.common.OperationResult;
 import com.sxkl.webapp.utils.StringUtils;
 
@@ -22,6 +27,8 @@ public class AccountService {
 
 	@Autowired
 	private IAccountDao accountDao;
+	@Autowired
+	private TallyService tallyService;
 	
 	public String save(Account account){
 		try {
@@ -65,6 +72,23 @@ public class AccountService {
 	public String getAccountBooks(String userId) {
 		try {
 			List<Account> accounts = accountDao.findByUserId(userId);
+			if(!accounts.isEmpty()){
+				List<Tally> tallies = tallyService.getSumPerAccount();
+				Map<String,Tally> map = Maps.uniqueIndex(tallies, new Function <Tally,String> () {  
+			          public String apply(Tally from) {  
+			            return StringUtils.appendJoinEmpty(from.getAccountId(),from.getCategoryType()); 
+			    }});  
+				for(Account account : accounts){
+					String key = StringUtils.appendJoinEmpty(account.getId(),"INCOME"); 
+					if(map.containsKey(key)){
+						account.setIncome(map.get(key).getMoney());
+					}
+					key = StringUtils.appendJoinEmpty(account.getId(),"OUTCOME"); 
+					if(map.containsKey(key)){
+						account.setOutcome(map.get(key).getMoney());
+					}
+				}
+			}
 			return OperationResult.configurateSuccessResult(accounts);
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("账本保存失败！错误信息："+e.getMessage());

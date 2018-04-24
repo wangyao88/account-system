@@ -128,8 +128,8 @@ function initAutocomplete(){
 
 function initDateTimePicker(){
 	$('.datetimepicker-default').datetimepicker({
-        format: 'yyyy-mm-dd hh:ii:ss'
-        });
+		format: 'yyyy-mm-dd hh:ii:ss'
+    });
 }
 
 (function init(){
