@@ -64,4 +64,16 @@ public class StatisticsController extends BaseController{
 		JsonObject json = RequestUtils.convert2Json(request);
 		return tallyService.getCategoryLineData(json.toString());
 	}
+	
+	@GetMapping("/all/index")
+	public ModelAndView allIndex(HttpServletRequest request){
+		return configurePage("statistics/all_statistics_index",request);
+	}
+	
+	@PostMapping("/getInAndOutSumData")
+	@ResponseBody
+	public String getInAndOutSumData(HttpServletRequest request){
+		JsonObject json = RequestUtils.convert2Json(request);
+		return tallyService.getInAndOutSumData(json.toString());
+	}
 }

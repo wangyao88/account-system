@@ -118,7 +118,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	<%@ include file="../common/js.jsp"%>
-	<script type="text/javascript" src="<%=basePath%>assert/layer/layer.js"></script>
 	<script src="<%=basePath%>assert/theme/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="<%=basePath%>assert/common/echarts/echarts-3.8.4.js"></script>
 	<script type="text/javascript" src="<%=basePath%>assert/statistics/income_statistics_index.js"></script>

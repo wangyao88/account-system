@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>爱记账-支出统计</title>
+    <title>爱记账-综合统计</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,17 +21,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body class=" ">
 	<div>
 		<div id="error_msg" value="${error_msg}" style="display: none;">
-		
 		</div>
 		<%@ include file="../common/header.jsp"%>
 		<div id="wrapper">
-			<%@ include file="outcome_statistics_menu.jsp"%>
+			<%@ include file="all_statistics_menu.jsp"%>
 			<!--BEGIN PAGE WRAPPER-->
 			<div id="page-wrapper">
 				<!--BEGIN TITLE & BREADCRUMB PAGE-->
 				<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 					<div class="page-header pull-left">
-						<div class="page-title">支出统计</div>
+						<div class="page-title">综合统计</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -41,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="tab-general">
 					    <div class="row mbl">
 					    	<div id="search_panel" class="col-lg-6">
-					    		<div class="panel panel-yellow">
+					    		<div class="panel panel-red">
 	                                <div class="panel-heading">统计条件 默认近一年</div>
 	                                <div class="panel-body pan">
 	                                    <form action="#" class="form-horizontal">
@@ -51,6 +50,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                                        <div class="col-sm-5">
 			                                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-stack-exchange"></i></span>
 			                                                <select id="accountId" class="form-control"></select>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <label for="account" class="col-sm-3 control-label">日期类型</label>
+			                                        <div class="col-sm-5">
+			                                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-heart"></i></span>
+			                                                <select id="dateType" class="form-control"></select>
 			                                            </div>
 			                                        </div>
 			                                    </div>
@@ -82,29 +89,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                </div>
 	                            </div>
 					    	</div>
-					    	<div id="outcome_statistics_pie_panel" class="col-lg-6">
-					    		<div class="panel panel-blue">
-	                                <div class="panel-heading">各支出占比</div>
+					    	<div id="all_statistics_pie_panel" class="col-lg-6">
+					    		<div class="panel panel-green">
+	                                <div class="panel-heading">总收入支出占比</div>
 	                                <div class="panel-body pan">
-	                                    <div id="outcome_statistics_pie"></div>
+	                                    <div id="all_statistics_pie"></div>
 	                                </div>
 	                            </div>
 					    	</div>
                         </div>
                         <div class="row mbl">
-					    	<div id="outcome_statistics_bar_panel" class="col-lg-6">
+					    	<div id="all_statistics_bar_panel" class="col-lg-12">
 					    		<div class="panel panel-violet">
-	                                <div class="panel-heading">支出统计</div>
+	                                <div class="panel-heading">收入统计</div>
 	                                <div class="panel-body pan">
-	                                    <div id="outcome_statistics_bar"></div>
-	                                </div>
-	                            </div>
-					    	</div>
-					    	<div id="outcome_statistics_line_panel" class="col-lg-6">
-					    		<div class="panel panel-grey">
-	                                <div class="panel-heading">支出趋势 </div>
-	                                <div class="panel-body pan">
-	                                    <div id="outcome_statistics_line"></div>
+	                                    <div id="all_statistics_line"></div>
 	                                </div>
 	                            </div>
 					    	</div>
@@ -118,8 +117,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	<%@ include file="../common/js.jsp"%>
+	<script type="text/javascript" src="<%=basePath%>assert/layer/layer.js"></script>
 	<script src="<%=basePath%>assert/theme/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="<%=basePath%>assert/common/echarts/echarts-3.8.4.js"></script>
-	<script type="text/javascript" src="<%=basePath%>assert/statistics/outcome_statistics_index.js"></script>
+	<script type="text/javascript" src="<%=basePath%>assert/statistics/all_statistics_index.js"></script>
 </body>
 </html>

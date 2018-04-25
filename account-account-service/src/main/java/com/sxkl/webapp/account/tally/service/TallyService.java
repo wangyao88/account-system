@@ -1,6 +1,5 @@
 package com.sxkl.webapp.account.tally.service;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -243,6 +241,33 @@ public class TallyService{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return OperationResult.configurateFailureResult("获取账本类别折线统计数据失败！错误信息："+e.getMessage());
+		}
+	}
+	
+	public String getInAndOutSumData(Tally tally) {
+		try {
+			TallyConditionService.initTallyDate(tally);
+			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
+			Root<Tally> root = criteriaQuery.from(Tally.class);
+			criteriaQuery.groupBy(root.get("categoryType"));
+			conigureCriteriaQuery(tally, root, criteriaQuery, criteriaBuilder);
+			criteriaQuery.multiselect(root.get("categoryType").alias("categoryType"),criteriaBuilder.sum(root.get("money")).alias("money"));
+			TypedQuery<Tuple> typedQuery = entityManager.createQuery(criteriaQuery);
+			List<Tuple> datas = typedQuery.getResultList();
+			List<Tally> result = Lists.newArrayList();
+			for(Tuple tuple : datas){
+				String categoryType = tuple.get("categoryType").toString();
+				categoryType = categoryType.equals("INCOME") ? "收入" : "支出";
+				String money = tuple.get("money").toString();
+				Tally bean = new Tally();
+				bean.setCategoryType(categoryType);
+				bean.setMoney(Float.parseFloat(money));
+				result.add(bean);
+			}
+			return OperationResult.configurateSuccessResult(result);
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("获取综合统计饼图数据失败！错误信息："+e.getMessage());
 		}
 	}
 }

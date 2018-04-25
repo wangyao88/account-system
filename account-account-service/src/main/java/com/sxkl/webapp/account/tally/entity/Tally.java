@@ -56,6 +56,9 @@ public class Tally {
 	@Transient
 	private Date month;
 	
+	@Transient
+	private String dateType;
+	
 	public Tally() {
 		super();
 	}

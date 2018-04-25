@@ -183,10 +183,6 @@ function initIncomeStatisticsBarData(accountName,xAxis_data,series_data){
 }
 
 function initIncomeStatisticsLineData(accountName,legend_data,xAxis_data,series_data){
-	console.log(accountName);
-	console.log(legend_data);
-	console.log(xAxis_data);
-	console.log(series_data);
 	var option = {
 	    title : {
 	    	x: 'center',

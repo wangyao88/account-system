@@ -26,4 +26,7 @@ public interface TallyService {
 
 	@PostMapping("/getCategoryLineData")
 	String getCategoryLineData(@RequestParam("tally")String tally);
+
+	@PostMapping("/getInAndOutSumData")
+	String getInAndOutSumData(@RequestParam("tally")String tally);
 }
