@@ -1,6 +1,6 @@
-var income_statistics_pie;
-var income_statistics_bar;
-var income_statistics_line;
+var outcome_statistics_pie;
+var outcome_statistics_bar;
+var outcome_statistics_line;
 
 function initSearchPanel(){
 	$.ajax({
@@ -30,21 +30,21 @@ function initSearchPanel(){
 
 function initStatisticsChartHeight(){
 	var height = $("#search_panel").height();
-	$("#income_statistics_pie").height(height-60);
-	$("#income_statistics_bar").height(height*1.5);
-	$("#income_statistics_line").height(height*1.5);
+	$("#outcome_statistics_pie").height(height-60);
+	$("#outcome_statistics_bar").height(height*1.5);
+	$("#outcome_statistics_line").height(height*1.5);
 }
 
 function initStatisticsChart(){
-	income_statistics_pie = echarts.init(document.getElementById('income_statistics_pie'));
-	income_statistics_bar = echarts.init(document.getElementById('income_statistics_bar'));
-	income_statistics_line = echarts.init(document.getElementById('income_statistics_line'));
+	outcome_statistics_pie = echarts.init(document.getElementById('outcome_statistics_pie'));
+	outcome_statistics_bar = echarts.init(document.getElementById('outcome_statistics_bar'));
+	outcome_statistics_line = echarts.init(document.getElementById('outcome_statistics_line'));
 }
 
-function initIncomeStatisticsChart(){
+function initOutcomeStatisticsChart(){
 	var data = {
 		accountId : $('#accountId').val(),
-		categoryType : 'INCOME'
+		categoryType : 'OUTCOME'
 	};
 	var beginDate = $('#beginDate').val();
 	if(beginDate){
@@ -55,7 +55,7 @@ function initIncomeStatisticsChart(){
 		data.endDate = endDate;
 	}
 	$.ajax({
-		url :"statistics/getIncomeCategoryData",
+		url :"statistics/getOutcomeCategoryData",
 		type : "post",
 		data : data,
 		dataType : "json",
@@ -74,13 +74,13 @@ function initIncomeStatisticsChart(){
 					bar_series_data.push(money);
 			    });
 				var bar_xAxis_data = pie_legend_data;
-				initIncomeStatisticsBarData(accountName,bar_xAxis_data,bar_series_data);
-				initIncomeStatisticsPieData(accountName,pie_legend_data,pie_series_data);
+				initOutcomeStatisticsBarData(accountName,bar_xAxis_data,bar_series_data);
+				initOutcomeStatisticsPieData(accountName,pie_legend_data,pie_series_data);
 			}
 		}
 	});
 	$.ajax({
-		url :"statistics/getIncomeCategoryLineData",
+		url :"statistics/getOutcomeCategoryLineData",
 		type : "post",
 		data : data,
 		dataType : "json",
@@ -90,16 +90,16 @@ function initIncomeStatisticsChart(){
 				var legend_data = result.data.legendData;
 				var xAxis_data = result.data.xAxisData;
 				var series_data = result.data.seriesData;
-				initIncomeStatisticsLineData(accountName,legend_data,xAxis_data,series_data);
+				initOutcomeStatisticsLineData(accountName,legend_data,xAxis_data,series_data);
 			}
 		}
 	});
 }
 
-function initIncomeStatisticsPieData(accountName,legend_data,series_data){
+function initOutcomeStatisticsPieData(accountName,legend_data,series_data){
 	var option = {
 	    title : {
-	        text: '各收入来源占比',
+	        text: '各支出来源占比',
 	        subtext: '账本：'+accountName,
 	        x:'center'
 	    },
@@ -115,7 +115,7 @@ function initIncomeStatisticsPieData(accountName,legend_data,series_data){
 	    calculable : true,
 	    series : [
 	        {
-	            name:'收入来源占比',
+	            name:'支出来源占比',
 	            type:'pie',
 	            radius : '55%',
 	            center: ['50%', '60%'],
@@ -123,14 +123,14 @@ function initIncomeStatisticsPieData(accountName,legend_data,series_data){
 	        }
 	    ]
 	};
-	income_statistics_pie.setOption(option);
+	outcome_statistics_pie.setOption(option);
 }
 
-function initIncomeStatisticsBarData(accountName,xAxis_data,series_data){
+function initOutcomeStatisticsBarData(accountName,xAxis_data,series_data){
 	var option = {
 		title: {
 	        x: 'center',
-	        text: '收入统计',
+	        text: '支出统计',
 	        subtext: '账本：'+accountName
 	    },
 	    tooltip : {
@@ -155,7 +155,7 @@ function initIncomeStatisticsBarData(accountName,xAxis_data,series_data){
 	    ],
 	    series : [
 	        {
-	            name:'收入统计',
+	            name:'支出统计',
 	            type:'bar',
 	            itemStyle: {
 	                normal: {
@@ -179,10 +179,10 @@ function initIncomeStatisticsBarData(accountName,xAxis_data,series_data){
 	        }
 	    ]
 	};
-	income_statistics_bar.setOption(option);
+	outcome_statistics_bar.setOption(option);
 }
 
-function initIncomeStatisticsLineData(accountName,legend_data,xAxis_data,series_data){
+function initOutcomeStatisticsLineData(accountName,legend_data,xAxis_data,series_data){
 	console.log(accountName);
 	console.log(legend_data);
 	console.log(xAxis_data);
@@ -190,7 +190,7 @@ function initIncomeStatisticsLineData(accountName,legend_data,xAxis_data,series_
 	var option = {
 	    title : {
 	    	x: 'center',
-	        text: '收入统计',
+	        text: '支出统计',
 	        subtext: '账本：'+accountName
 	    },
 	    tooltip : {
@@ -219,11 +219,11 @@ function initIncomeStatisticsLineData(accountName,legend_data,xAxis_data,series_
 	    ],
 	    series : series_data
 	};
-	setTimeout(income_statistics_line.setOption(option), 500);  
+	setTimeout(outcome_statistics_line.setOption(option), 500);  
 }
 
 function statistics(){
-	initIncomeStatisticsChart();
+	initOutcomeStatisticsChart();
 }
 
 (function(){

@@ -53,6 +53,9 @@ public class Tally {
 	@Transient
 	private Date endDate;
 	
+	@Transient
+	private Date month;
+	
 	public Tally() {
 		super();
 	}

@@ -42,4 +42,10 @@ public class TallyController {
 		Tally bean = (Tally) JsonUtils.convert2Bean(tally, Tally.class);
 		return tallService.getCategoryData(bean);
 	}
+	
+	@PostMapping("/getCategoryLineData")
+	public String getCategoryLineData(String tally){
+		Tally bean = (Tally) JsonUtils.convert2Bean(tally, Tally.class);
+		return tallService.getCategoryLineData(bean);
+	}
 }

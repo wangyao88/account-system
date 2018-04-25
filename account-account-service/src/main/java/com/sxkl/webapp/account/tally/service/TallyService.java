@@ -1,10 +1,14 @@
 package com.sxkl.webapp.account.tally.service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,8 +24,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.sxkl.webapp.account.tally.dao.ITallyJpaDao;
+import com.sxkl.webapp.account.tally.entity.CategoryLineData;
+import com.sxkl.webapp.account.tally.entity.Serie;
 import com.sxkl.webapp.account.tally.entity.Tally;
 import com.sxkl.webapp.common.OperationResult;
 import com.sxkl.webapp.utils.ObjectUtils;
@@ -159,6 +169,7 @@ public class TallyService{
 
 	public String getCategoryData(Tally tally) {
 		try {
+			TallyConditionService.initTallyDate(tally);
 			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 			CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
 			Root<Tally> root = criteriaQuery.from(Tally.class);
@@ -178,7 +189,60 @@ public class TallyService{
 			}
 			return OperationResult.configurateSuccessResult(result);
 		} catch (Exception e) {
-			return OperationResult.configurateFailureResult("获取账本类别分组总额失败！错误信息："+e.getMessage());
+			return OperationResult.configurateFailureResult("获取账本类别统计数据失败！错误信息："+e.getMessage());
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public String getCategoryLineData(Tally tally) {
+		try {
+			String sql = TallyConditionService.getCategoryLineDataSql(tally);
+			Query query = entityManager.createNativeQuery(sql);
+			List<Object[]> data = query.getResultList();
+			Map<String, Object[]> map = Maps.uniqueIndex(data, new Function<Object[], String>() {
+				public String apply(Object[] from) {
+					return StringUtils.appendJoinEmpty(from[0].toString(), from[1].toString());
+				}
+			});
+			
+			Set<String> categoryNameSet = Sets.newHashSet();
+			CategoryLineData categoryLineData = new CategoryLineData();
+			for(Object[] objs : data){
+				categoryNameSet.add(objs[1].toString());
+			}
+			int categoryNameSetSize = categoryNameSet.size();
+			String[] categoryNames = new String[categoryNameSetSize];
+			categoryLineData.setLegendData(categoryNameSet.toArray(categoryNames));
+			
+			List<String> monthRanges = TallyConditionService.getDateRange(tally);
+			
+			String[] months = new String[monthRanges.size()];
+			categoryLineData.setXAxisData(monthRanges.toArray(months));
+			Serie[] series = new Serie[categoryNameSetSize];
+			for (int i = 0; i < categoryNameSetSize; i++) {
+				String categoryName = categoryNames[i];
+				Serie serie = new Serie();
+				serie.setName(categoryName);
+				serie.setType("line");
+				List<Float> serieDatas = Lists.newArrayList();
+				for(String month : monthRanges){
+					String key = StringUtils.appendJoinEmpty(month,categoryName);
+					if(map.containsKey(key)){
+						Object money = map.get(key)[2];
+						serieDatas.add(Float.valueOf(money.toString()));
+						continue;
+					}
+					serieDatas.add(0.0f);
+				}
+				Float[] dataArr = new Float[serieDatas.size()];
+				serie.setData(serieDatas.toArray(dataArr));
+				series[i] = serie;
+			}
+			categoryLineData.setSeriesData(series);
+			return OperationResult.configurateSuccessResult(categoryLineData);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return OperationResult.configurateFailureResult("获取账本类别折线统计数据失败！错误信息："+e.getMessage());
 		}
 	}
 }

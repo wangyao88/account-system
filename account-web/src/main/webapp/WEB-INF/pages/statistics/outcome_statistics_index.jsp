@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>爱记账-收入统计</title>
+    <title>爱记账-支出统计</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<%@ include file="../common/header.jsp"%>
 		<div id="wrapper">
-			<%@ include file="income_statistics_menu.jsp"%>
+			<%@ include file="outcome_statistics_menu.jsp"%>
 			<!--BEGIN PAGE WRAPPER-->
 			<div id="page-wrapper">
 				<!--BEGIN TITLE & BREADCRUMB PAGE-->
 				<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
 					<div class="page-header pull-left">
-						<div class="page-title">收入统计</div>
+						<div class="page-title">支出统计</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -82,29 +82,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                </div>
 	                            </div>
 					    	</div>
-					    	<div id="income_statistics_pie_panel" class="col-lg-6">
+					    	<div id="outcome_statistics_pie_panel" class="col-lg-6">
 					    		<div class="panel panel-blue">
-	                                <div class="panel-heading">各收入占比</div>
+	                                <div class="panel-heading">各支出占比</div>
 	                                <div class="panel-body pan">
-	                                    <div id="income_statistics_pie"></div>
+	                                    <div id="outcome_statistics_pie"></div>
 	                                </div>
 	                            </div>
 					    	</div>
                         </div>
                         <div class="row mbl">
-					    	<div id="income_statistics_bar_panel" class="col-lg-6">
+					    	<div id="outcome_statistics_bar_panel" class="col-lg-6">
 					    		<div class="panel panel-violet">
-	                                <div class="panel-heading">收入统计</div>
+	                                <div class="panel-heading">支出统计</div>
 	                                <div class="panel-body pan">
-	                                    <div id="income_statistics_bar"></div>
+	                                    <div id="outcome_statistics_bar"></div>
 	                                </div>
 	                            </div>
 					    	</div>
-					    	<div id="income_statistics_line_panel" class="col-lg-6">
+					    	<div id="outcome_statistics_line_panel" class="col-lg-6">
 					    		<div class="panel panel-grey">
-	                                <div class="panel-heading">收入趋势 </div>
+	                                <div class="panel-heading">支出趋势 </div>
 	                                <div class="panel-body pan">
-	                                    <div id="income_statistics_line"></div>
+	                                    <div id="outcome_statistics_line"></div>
 	                                </div>
 	                            </div>
 					    	</div>
@@ -121,6 +121,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="<%=basePath%>assert/layer/layer.js"></script>
 	<script src="<%=basePath%>assert/theme/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="<%=basePath%>assert/common/echarts/echarts-3.8.4.js"></script>
-	<script type="text/javascript" src="<%=basePath%>assert/statistics/income_statistics_index.js"></script>
+	<script type="text/javascript" src="<%=basePath%>assert/statistics/outcome_statistics_index.js"></script>
 </body>
 </html>

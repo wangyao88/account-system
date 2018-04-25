@@ -28,7 +28,7 @@ public class StatisticsController extends BaseController{
 	private TallyService tallyService;
 
 	@GetMapping("/income/index")
-	public ModelAndView index(HttpServletRequest request){
+	public ModelAndView incomeIndex(HttpServletRequest request){
 		return configurePage("statistics/income_statistics_index",request);
 	}
 	
@@ -36,6 +36,32 @@ public class StatisticsController extends BaseController{
 	@ResponseBody
 	public String getIncomeCategoryData(HttpServletRequest request){
 		JsonObject json = RequestUtils.convert2Json(request);
-		return tallyService.getIncomeCategoryData(json.toString());
+		return tallyService.getCategoryData(json.toString());
+	}
+	
+	@PostMapping("/getIncomeCategoryLineData")
+	@ResponseBody
+	public String getIncomeCategoryLineData(HttpServletRequest request){
+		JsonObject json = RequestUtils.convert2Json(request);
+		return tallyService.getCategoryLineData(json.toString());
+	}
+	
+	@GetMapping("/outcome/index")
+	public ModelAndView outcomeIndex(HttpServletRequest request){
+		return configurePage("statistics/outcome_statistics_index",request);
+	}
+	
+	@PostMapping("/getOutcomeCategoryData")
+	@ResponseBody
+	public String getOutcomeCategoryData(HttpServletRequest request){
+		JsonObject json = RequestUtils.convert2Json(request);
+		return tallyService.getCategoryData(json.toString());
+	}
+	
+	@PostMapping("/getOutcomeCategoryLineData")
+	@ResponseBody
+	public String getOutcomeCategoryLineData(HttpServletRequest request){
+		JsonObject json = RequestUtils.convert2Json(request);
+		return tallyService.getCategoryLineData(json.toString());
 	}
 }

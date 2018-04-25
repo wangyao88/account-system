@@ -28,7 +28,12 @@ public class TallyServiceFallback extends BaseServiceFallback implements TallySe
 	}
 
 	@Override
-	public String getIncomeCategoryData(String tally) {
-		return getServiceErrorResult("收入统计失败");
+	public String getCategoryData(String tally) {
+		return getServiceErrorResult("统计失败");
+	}
+
+	@Override
+	public String getCategoryLineData(String tally) {
+		return getServiceErrorResult("折线统计失败");
 	}
 }

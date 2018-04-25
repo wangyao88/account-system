@@ -22,5 +22,8 @@ public interface TallyService {
 	String getSumMoney(@RequestParam("tally")String tally);
 
 	@PostMapping("/getCategoryData")
-	String getIncomeCategoryData(@RequestParam("tally")String tally);
+	String getCategoryData(@RequestParam("tally")String tally);
+
+	@PostMapping("/getCategoryLineData")
+	String getCategoryLineData(@RequestParam("tally")String tally);
 }
