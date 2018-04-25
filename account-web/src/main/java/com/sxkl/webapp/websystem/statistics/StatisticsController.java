@@ -76,4 +76,11 @@ public class StatisticsController extends BaseController{
 		JsonObject json = RequestUtils.convert2Json(request);
 		return tallyService.getInAndOutSumData(json.toString());
 	}
+	
+	@PostMapping("/getInAndOutSumLineData")
+	@ResponseBody
+	public String getInAndOutSumLineData(HttpServletRequest request){
+		JsonObject json = RequestUtils.convert2Json(request);
+		return tallyService.getInAndOutSumLineData(json.toString());
+	}
 }

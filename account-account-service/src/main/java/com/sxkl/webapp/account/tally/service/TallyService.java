@@ -270,4 +270,59 @@ public class TallyService{
 			return OperationResult.configurateFailureResult("获取综合统计饼图数据失败！错误信息："+e.getMessage());
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public String getInAndOutSumLineData(Tally tally) {
+		try {
+			String sql = TallyConditionService.getInAndOutSumLineDataSql(tally);
+			Query query = entityManager.createNativeQuery(sql);
+			List<Object[]> data = query.getResultList();
+			Map<String, Object[]> map = Maps.uniqueIndex(data, new Function<Object[], String>() {
+				public String apply(Object[] from) {
+					String categoryType = from[1].toString().equals("INCOME") ? "收入" : "支出";
+					return StringUtils.appendJoinEmpty(from[0].toString(), categoryType);
+				}
+			});
+			
+			Set<String> categoryTypeSet = Sets.newHashSet();
+			CategoryLineData categoryLineData = new CategoryLineData();
+			for(Object[] objs : data){
+				String categoryType = objs[1].toString().equals("INCOME") ? "收入" : "支出";
+				categoryTypeSet.add(categoryType);
+			}
+			int categoryTypeSetSize = categoryTypeSet.size();
+			String[] categoryTypes = new String[categoryTypeSetSize];
+			categoryLineData.setLegendData(categoryTypeSet.toArray(categoryTypes));
+			
+			List<String> dateRanges = TallyConditionService.getDateRange(tally,tally.getDateType());
+			
+			String[] dates = new String[dateRanges.size()];
+			categoryLineData.setXAxisData(dateRanges.toArray(dates));
+			Serie[] series = new Serie[categoryTypeSetSize];
+			for (int i = 0; i < categoryTypeSetSize; i++) {
+				String categoryType = categoryTypes[i];
+				Serie serie = new Serie();
+				serie.setName(categoryType);
+				serie.setType("line");
+				List<Float> serieDatas = Lists.newArrayList();
+				for(String date : dateRanges){
+					String key = StringUtils.appendJoinEmpty(date,categoryType);
+					if(map.containsKey(key)){
+						Object money = map.get(key)[2];
+						serieDatas.add(Float.valueOf(money.toString()));
+						continue;
+					}
+					serieDatas.add(0.0f);
+				}
+				Float[] dataArr = new Float[serieDatas.size()];
+				serie.setData(serieDatas.toArray(dataArr));
+				series[i] = serie;
+			}
+			categoryLineData.setSeriesData(series);
+			return OperationResult.configurateSuccessResult(categoryLineData);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return OperationResult.configurateFailureResult("获取总和统计折线图数据失败！错误信息："+e.getMessage());
+		}
+	}
 }

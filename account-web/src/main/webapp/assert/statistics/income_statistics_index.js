@@ -215,7 +215,7 @@ function initIncomeStatisticsLineData(accountName,legend_data,xAxis_data,series_
 	    ],
 	    series : series_data
 	};
-	setTimeout(income_statistics_line.setOption(option), 500);  
+	income_statistics_line.setOption(option);
 }
 
 function statistics(){

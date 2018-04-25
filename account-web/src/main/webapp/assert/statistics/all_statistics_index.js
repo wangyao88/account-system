@@ -22,9 +22,9 @@ function initSearchPanel(){
 		}
 	});
 	
-	var html = '<option value="年" selected="selected">年</option>'+
-				'<option value="月">月</option>'+
-			   '<option value="日">日</option>';
+	var html = '<option value="year" selected="selected">年</option>'+
+				'<option value="month">月</option>'+
+			   '<option value="day">日</option>';
 	$("#dateType").html(html);
 
 	$('.datepicker-default').datepicker({
@@ -72,6 +72,41 @@ function initAllStatisticsPieData(accountName,legend_data,series_data){
 	all_statistics_pie.setOption(option);
 }
 
+function initAllStatisticsLineData(legend_data,xAxis_data,series_data){
+	var option = {
+	    title : {
+	    	x: 'center',
+	        text: '综合统计'
+	    },
+	    tooltip : {
+	        trigger: 'axis'
+	    },
+	    legend: {
+	    	orient : 'vertical',
+	        x : 'left',
+	        data:legend_data
+	    },
+	    calculable : true,
+	    xAxis : [
+	        {
+	            type : 'category',
+	            boundaryGap : false,
+	            data : xAxis_data
+	        }
+	    ],
+	    yAxis : [
+	        {
+	            type : 'value',
+	            axisLabel : {
+	                formatter: '{value} 元'
+	            }
+	        }
+	    ],
+	    series : series_data
+	};
+	all_statistics_line.setOption(option);
+}
+
 function statistics(){
 	var data = {
 		accountId : $('#accountId').val(),
@@ -110,6 +145,22 @@ function statistics(){
 			}
 			
 			initAllStatisticsPieData(accountName,pie_legend_data,pie_series_data);
+		}
+	});
+	
+	$.ajax({
+		url :"statistics/getInAndOutSumLineData",
+		type : "post",
+		data : data,
+		dataType : "json",
+		success : function(result) {
+			if(result.status){
+				console.log(result.data);
+				var legend_data = result.data.legendData;
+				var xAxis_data = result.data.xAxisData;
+				var series_data = result.data.seriesData;
+				initAllStatisticsLineData(legend_data,xAxis_data,series_data);
+			}
 		}
 	});
 }

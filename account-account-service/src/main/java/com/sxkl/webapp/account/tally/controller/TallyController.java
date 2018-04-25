@@ -54,4 +54,10 @@ public class TallyController {
 		Tally bean = (Tally) JsonUtils.convert2Bean(tally, Tally.class);
 		return tallService.getInAndOutSumData(bean);
 	}
+	
+	@PostMapping("/getInAndOutSumLineData")
+	public String getInAndOutSumLineData(String tally){
+		Tally bean = (Tally) JsonUtils.convert2Bean(tally, Tally.class);
+		return tallService.getInAndOutSumLineData(bean);
+	}
 }
