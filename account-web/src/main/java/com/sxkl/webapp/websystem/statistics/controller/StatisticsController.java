@@ -1,4 +1,4 @@
-package com.sxkl.webapp.websystem.statistics;
+package com.sxkl.webapp.websystem.statistics.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

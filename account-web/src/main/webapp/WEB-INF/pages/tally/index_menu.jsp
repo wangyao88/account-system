@@ -54,15 +54,7 @@
             </li>
             <li><a href="#"><i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">时事新闻</span></a>
             </li>
-            <li><a href="#"><i class="fa fa-th-list fa-fw"><div class="icon-bg bg-blue"></div></i><span class="menu-title">小工具</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="table-basic.html"><i class="fa fa-th-large"></i><span class="submenu-title">日历</span></a>
-                    </li>
-                    <li><a href="table-responsive.html"><i class="fa fa-tablet"></i><span class="submenu-title">计算器</span></a>
-                    </li>
-                    <li><a href="table-action.html"><i class="fa fa-tencent-weibo"></i><span class="submenu-title">天气预报</span></a>
-                    </li>
-                </ul>
+            <li><a href="tools/index"><i class="fa fa-th-list fa-fw"><div class="icon-bg bg-blue"></div></i><span class="menu-title">小工具</span></a>
             </li>
             <li><a href="#"><i class="fa fa-database fa-fw"><div class="icon-bg bg-red"></div></i><span class="menu-title">任务管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
