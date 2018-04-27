@@ -14,6 +14,7 @@
         <module>account-gateway-service</module>
         <module>account-account-service</module>
         <module>account-logincenter-service</module>
+        <module>account-news-service</module>
     </modules>
 
 	<name>account-system</name>

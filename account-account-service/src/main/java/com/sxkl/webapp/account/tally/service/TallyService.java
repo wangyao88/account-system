@@ -321,7 +321,6 @@ public class TallyService{
 			categoryLineData.setSeriesData(series);
 			return OperationResult.configurateSuccessResult(categoryLineData);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return OperationResult.configurateFailureResult("获取总和统计折线图数据失败！错误信息："+e.getMessage());
 		}
 	}
