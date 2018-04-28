@@ -39,7 +39,7 @@ public class NewsService {
 			JSONObject json = new JSONObject();
 			Map<String,Integer> configuration = newsTopConfigure.getKeyIndexConfiguration();
 			for(Map.Entry<String,Integer> entry : configuration.entrySet()){
-				json.put(entry.getKey(),tops.get(entry.getValue()));
+				json.put(entry.getKey(),tops.get(entry.getValue()-1));
 			}
 			return OperationResult.configurateSuccessResult(json);
 		} catch (Exception e) {

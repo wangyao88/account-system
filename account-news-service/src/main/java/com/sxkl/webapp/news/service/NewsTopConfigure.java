@@ -69,9 +69,9 @@ public class NewsTopConfigure {
 			String key = entry.getKey();
 			Map<String,Integer> value = entry.getValue();
 			for(Map.Entry<String,Integer> valueEntry : value.entrySet()){
-				String subKey = entry.getKey();
+				String subKey = valueEntry.getKey();
 				Integer index = valueEntry.getValue();
-				result.put(StringUtils.append(".", key,subKey), index);
+				result.put(StringUtils.append("_", key,subKey), index);
 			}
 		}
 		return result;

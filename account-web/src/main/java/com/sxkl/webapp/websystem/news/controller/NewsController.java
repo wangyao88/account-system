@@ -33,6 +33,8 @@ public class NewsController extends BaseController{
 	@PostMapping("/getRecentTopAll")
 	@ResponseBody
 	public String getRecentTopAll(){
-		return newsOService.getRecentTopAll();
+		String result = newsOService.getRecentTopAll();
+		System.out.println(result);
+		return result;
 	}
 }

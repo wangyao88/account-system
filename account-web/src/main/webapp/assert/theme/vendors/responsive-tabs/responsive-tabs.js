@@ -132,13 +132,11 @@ fakewaffle.bindTabToCollapse = function () {
 
     collapse.on('show.bs.collapse', function (e) {
         var current = $(e.target).context.id.replace(/collapse-/g, '#');
-
         $('a[href="' + current + '"]').tab('show');
     });
 }
 
 $(window).resize(function () {
-
     fakewaffle.checkResize();
 });
 

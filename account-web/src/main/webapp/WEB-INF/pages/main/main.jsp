@@ -15,6 +15,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT">
     <%@ include file="../common/css.jsp"%>
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/intro.js/introjs.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/calendar/zabuto_calendar.min.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/sco.message/sco.message.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/intro.js/introjs.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/media/css/jquery.dataTables.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css">
+<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/media/css/dataTables.bootstrap.css">
 </head>
 
 <body class=" ">
@@ -357,5 +364,18 @@ Report this user for spam</a>
     </div>
     </div>
     <%@ include file="../common/js.jsp"%>
+    <script src="<%=basePath%>assert/theme/vendors/intro.js/intro.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.categories.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.pie.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.tooltip.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.resize.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.stack.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.spline.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/calendar/zabuto_calendar.min.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/sco.message/sco.message.js"></script>
+	<script src="<%=basePath%>assert/theme/vendors/intro.js/intro.js"></script>
+	<script src="<%=basePath%>assert/theme/js/index.js"></script>
 </body>
 </html>

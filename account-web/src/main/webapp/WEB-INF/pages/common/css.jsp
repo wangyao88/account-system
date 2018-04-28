@@ -9,14 +9,6 @@
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/font-awesome/css/font-awesome.min.css">
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/bootstrap/css/bootstrap.min.css">
-<!--LOADING STYLESHEET FOR PAGE-->
-<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/intro.js/introjs.css">
-<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/calendar/zabuto_calendar.min.css">
-<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/sco.message/sco.message.css">
-<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/intro.js/introjs.css">
-<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/media/css/jquery.dataTables.css">
-<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/extensions/TableTools/css/dataTables.tableTools.min.css">
-<link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/DataTables/media/css/dataTables.bootstrap.css">
 <!--Loading style vendors-->
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/animate.css/animate.css">
 <link type="text/css" rel="stylesheet" href="<%=basePath%>assert/theme/vendors/jquery-pace/pace.css">

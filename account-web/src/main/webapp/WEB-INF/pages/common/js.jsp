@@ -24,18 +24,3 @@
 <script src="<%=basePath%>assert/theme/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!--CORE JAVASCRIPT-->
 <script src="<%=basePath%>assert/theme/js/main.js"></script>
-<!--LOADING SCRIPTS FOR PAGE-->
-<script src="<%=basePath%>assert/theme/vendors/intro.js/intro.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.categories.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.pie.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.tooltip.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.resize.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.stack.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/flot-chart/jquery.flot.spline.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/calendar/zabuto_calendar.min.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/sco.message/sco.message.js"></script>
-<script src="<%=basePath%>assert/theme/vendors/intro.js/intro.js"></script>
-<script src="<%=basePath%>assert/theme/js/index.js"></script>
-
