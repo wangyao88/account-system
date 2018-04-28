@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.jettison.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,6 +19,8 @@ import com.sxkl.webapp.news.entity.News;
 import com.sxkl.webapp.news.entity.NewsTop;
 import com.sxkl.webapp.utils.ObjectUtils;
 import com.sxkl.webapp.utils.StringUtils;
+
+import net.sf.json.JSONObject;
 
 /**
  * @author: wangyao
