@@ -1,4 +1,11 @@
 (function(){
+//	var interval = 1000*60*10;//10分钟
+//	setInterval(getRecentTopAll,interval);
+	getRecentTopAll();
+})();
+
+
+function getRecentTopAll(){
 	$.ajax({
 		url :"news/getRecentTopAll",
 		type : "post",
@@ -76,7 +83,7 @@
 			}
 		}
 	});
-})();
+}
 
 function initTable(id,images){
 	var html = "";
