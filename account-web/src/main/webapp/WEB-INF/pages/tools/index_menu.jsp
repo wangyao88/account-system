@@ -52,7 +52,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">时事新闻</span></a>
+            <li><a href="news/index"><i class="fa fa-edit fa-fw"><div class="icon-bg bg-violet"></div></i><span class="menu-title">时事新闻</span></a>
             </li>
             <li class="active"><a href="tools/index"><i class="fa fa-th-list fa-fw"><div class="icon-bg bg-blue"></div></i><span class="menu-title">小工具</span></a>
             </li>
