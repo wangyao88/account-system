@@ -6,7 +6,7 @@
 	<artifactId>account-web</artifactId>
 	<packaging>war</packaging>
 
-	<name>account-web</name>
+	<name>account</name>
 	<description>记账控制器服务</description>
 
 	<parent>
