@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ import com.sxkl.webapp.account.tally.entity.CategoryLineData;
 import com.sxkl.webapp.account.tally.entity.Serie;
 import com.sxkl.webapp.account.tally.entity.Tally;
 import com.sxkl.webapp.common.OperationResult;
+import com.sxkl.webapp.utils.DateUtil;
 import com.sxkl.webapp.utils.ObjectUtils;
 import com.sxkl.webapp.utils.StringUtils;
 
@@ -322,6 +324,40 @@ public class TallyService{
 			return OperationResult.configurateSuccessResult(categoryLineData);
 		} catch (Exception e) {
 			return OperationResult.configurateFailureResult("获取总和统计折线图数据失败！错误信息："+e.getMessage());
+		}
+	}
+	
+	public String getDynamicData() {
+		try {
+			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
+			Root<Tally> root = criteriaQuery.from(Tally.class);
+			
+//			Path<String> categoryTypePath = root.get("categoryType");
+//			Predicate categoryTypePredicate = criteriaBuilder.equal(categoryTypePath, "OUTCOME");
+//			Path<Date> createDatePath = root.get("createDate");  
+//			Predicate beginDatePredicate = criteriaBuilder.greaterThanOrEqualTo(createDatePath, DateUtil.getOneYearAgo());
+//			criteriaQuery.where(categoryTypePredicate,beginDatePredicate);
+			
+			criteriaQuery.orderBy(criteriaBuilder.asc(root.get("createDate")));
+			
+			criteriaQuery.multiselect(root.get("createDate").alias("createDate"),root.get("money").alias("money"));
+			TypedQuery<Tuple> typedQuery = entityManager.createQuery(criteriaQuery);
+			typedQuery.setFirstResult(0);
+			typedQuery.setMaxResults(1000);
+			List<Tuple> datas = typedQuery.getResultList();
+			List<Tally> result = Lists.newArrayList();
+			for(Tuple tuple : datas){
+				String createDate = tuple.get("createDate").toString();
+				String money = tuple.get("money").toString();
+				Tally bean = new Tally();
+				bean.setCreateDate(DateUtil.parseStrToDate(createDate, DateUtil.DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS));
+				bean.setMoney(Float.parseFloat(money));
+				result.add(bean);
+			}
+			return OperationResult.configurateSuccessResult(result);
+		} catch (Exception e) {
+			return OperationResult.configurateFailureResult("获取动态支出数据失败！错误信息："+e.getMessage());
 		}
 	}
 }

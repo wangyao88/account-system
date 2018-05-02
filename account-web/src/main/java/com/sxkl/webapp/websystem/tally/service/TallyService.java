@@ -32,4 +32,7 @@ public interface TallyService {
 
 	@PostMapping("/getInAndOutSumLineData")
 	String getInAndOutSumLineData(@RequestParam("tally")String tally);
+
+	@PostMapping("/getDynamicData")
+	String getDynamicData();
 }

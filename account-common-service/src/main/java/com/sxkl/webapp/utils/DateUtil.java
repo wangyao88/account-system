@@ -838,6 +838,13 @@ public class DateUtil{
         }  
           
     }  
+    
+    public static Date getOneYearAgo(){
+    	Calendar c = Calendar.getInstance();  
+        c.setTime(new Date());  
+        c.add(Calendar.YEAR, -1);
+        return c.getTime();
+    }
       
 }  
 

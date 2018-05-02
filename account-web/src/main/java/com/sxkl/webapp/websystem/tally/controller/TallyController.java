@@ -73,4 +73,10 @@ public class TallyController extends BaseController{
 		JsonObject json = RequestUtils.convert2Json(request);
 		return tallyService.getSumMoney(json.toString());
 	}
+	
+	@PostMapping("/getDynamicData")
+	@ResponseBody
+	public String getDynamicData(){
+		return tallyService.getDynamicData();
+	}
 }

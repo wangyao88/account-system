@@ -46,4 +46,9 @@ public class TallyServiceFallback extends BaseServiceFallback implements TallySe
 	public String getInAndOutSumLineData(String string) {
 		return getServiceErrorResult("获取综合统计折线图数据失败");
 	}
+
+	@Override
+	public String getDynamicData() {
+		return getServiceErrorResult("获取动态支出数据失败");
+	}
 }
