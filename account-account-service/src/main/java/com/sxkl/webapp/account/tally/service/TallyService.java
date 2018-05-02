@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -333,11 +332,11 @@ public class TallyService{
 			CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createQuery(Tuple.class);
 			Root<Tally> root = criteriaQuery.from(Tally.class);
 			
-//			Path<String> categoryTypePath = root.get("categoryType");
-//			Predicate categoryTypePredicate = criteriaBuilder.equal(categoryTypePath, "OUTCOME");
-//			Path<Date> createDatePath = root.get("createDate");  
-//			Predicate beginDatePredicate = criteriaBuilder.greaterThanOrEqualTo(createDatePath, DateUtil.getOneYearAgo());
-//			criteriaQuery.where(categoryTypePredicate,beginDatePredicate);
+			Path<String> categoryTypePath = root.get("categoryType");
+			Predicate categoryTypePredicate = criteriaBuilder.equal(categoryTypePath, "OUTCOME");
+			Path<Date> createDatePath = root.get("createDate");  
+			Predicate beginDatePredicate = criteriaBuilder.greaterThanOrEqualTo(createDatePath, DateUtil.getOneYearAgo());
+			criteriaQuery.where(categoryTypePredicate,beginDatePredicate);
 			
 			criteriaQuery.orderBy(criteriaBuilder.asc(root.get("createDate")));
 			

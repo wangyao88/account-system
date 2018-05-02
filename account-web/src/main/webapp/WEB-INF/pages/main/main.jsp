@@ -45,6 +45,27 @@
                             </div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="panel panel-green">
+                                <div class="panel-heading">新闻</div>
+                                <div class="panel-body">
+	                                 <table class="table table-hover table-bordered">
+	                                      <thead>
+	                                          <tr>
+	                                              <th>序号</th>
+	                                              <th>标题</th>
+	                                              <th>媒体</th>
+	                                              <th>时间</th>
+	                                          </tr>
+	                                      </thead>
+	                                      <tbody id="news_table">
+	                                      </tbody>
+	                                  </table>
+	                            </div>
+                            </div>
+						</div>
+					</div>
 				</div>
 				<!--END CONTENT-->
 			</div>
